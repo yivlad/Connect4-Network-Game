@@ -1,0 +1,62 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 03ad8c879cb1a7fc76b11ddbc8fd88e94347bcbad19dc8199333a26b34d704d9
+
+name:           Connect4-Network-Game
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/yivlad/Connect4-Network-Game#readme>
+homepage:       https://github.com/yilvad/Connect4-Network-Game#readme
+bug-reports:    https://github.com/yilvad/Connect4-Network-Game/issues
+author:         Vladyslav Yatsenko
+maintainer:     example@example.com
+copyright:      2020 Vladyslav Yatsenko
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/yilvad/Connect4-Network-Game
+
+library
+  exposed-modules:
+      Lib
+  other-modules:
+      Paths_Connect4_Network_Game
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
+
+executable Connect4-Network-Game-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_Connect4_Network_Game
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      Connect4-Network-Game
+    , base >=4.7 && <5
+  default-language: Haskell2010
+
+test-suite Connect4-Network-Game-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_Connect4_Network_Game
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      Connect4-Network-Game
+    , base >=4.7 && <5
+  default-language: Haskell2010
