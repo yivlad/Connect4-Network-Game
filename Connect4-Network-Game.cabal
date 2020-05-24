@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 03ad8c879cb1a7fc76b11ddbc8fd88e94347bcbad19dc8199333a26b34d704d9
+-- hash: 321238546bcb4e35dbe29f3d181a7eaa2b377af4f37dbe4cf4c60fd2457fda8e
 
 name:           Connect4-Network-Game
 version:        0.1.0.0
@@ -27,6 +27,7 @@ source-repository head
 
 library
   exposed-modules:
+      GameLogics
       Lib
   other-modules:
       Paths_Connect4_Network_Game
