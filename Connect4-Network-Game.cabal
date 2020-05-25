@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 321238546bcb4e35dbe29f3d181a7eaa2b377af4f37dbe4cf4c60fd2457fda8e
+-- hash: 277f29a57d7975ef1e329aa8babd18d46b6528a298743f9584ffc2451a39ee18
 
 name:           Connect4-Network-Game
 version:        0.1.0.0
@@ -29,12 +29,16 @@ library
   exposed-modules:
       GameLogics
       Lib
+      Server
   other-modules:
       Paths_Connect4_Network_Game
   hs-source-dirs:
       src
   build-depends:
       base >=4.7 && <5
+    , containers
+    , network
+    , transformers
   default-language: Haskell2010
 
 executable Connect4-Network-Game-exe
@@ -47,6 +51,9 @@ executable Connect4-Network-Game-exe
   build-depends:
       Connect4-Network-Game
     , base >=4.7 && <5
+    , containers
+    , network
+    , transformers
   default-language: Haskell2010
 
 test-suite Connect4-Network-Game-test
@@ -60,4 +67,7 @@ test-suite Connect4-Network-Game-test
   build-depends:
       Connect4-Network-Game
     , base >=4.7 && <5
+    , containers
+    , network
+    , transformers
   default-language: Haskell2010

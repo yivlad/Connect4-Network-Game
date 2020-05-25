@@ -6,7 +6,7 @@ module GameLogics(
     newGame,
     makeMove,
     legalMoves,
-    evaluate
+    evaluatePosition
 ) where
 
 import Data.List
@@ -22,8 +22,8 @@ data Position = Position {
 newGame :: Position
 newGame = Position R $ replicate 7 []
 
-makeMove :: Position -> Int -> Position
-makeMove (Position turn board) col = Position (reverseTurn turn) (addDisc board)
+makeMove :: Int -> Position -> Position
+makeMove col (Position turn board) = Position (reverseTurn turn) (addDisc board)
     where
         reverseTurn :: Player -> Player
         reverseTurn R = Y
@@ -65,8 +65,8 @@ checkTile p b x y
     where
         l = length (b !! x) - 1
 
-evaluate :: Position -> Result
-evaluate (Position p b)
+evaluatePosition :: Position -> Result
+evaluatePosition (Position p b)
     | checkBoard R b = Win R
     | checkBoard Y b = Win Y
     | null $ legalMoves b = Draw

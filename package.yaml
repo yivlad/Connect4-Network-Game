@@ -1,48 +1,38 @@
-name:                Connect4-Network-Game
-version:             0.1.0.0
-github:              "yilvad/Connect4-Network-Game"
-license:             BSD3
-author:              "Vladyslav Yatsenko"
-maintainer:          "example@example.com"
-copyright:           "2020 Vladyslav Yatsenko"
-
+library:
+  source-dirs: src
+tests:
+  Connect4-Network-Game-test:
+    source-dirs: test
+    main: Spec.hs
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - Connect4-Network-Game
+copyright: 2020 Vladyslav Yatsenko
+maintainer: example@example.com
+dependencies:
+- containers
+- transformers
+- network
+- base >= 4.7 && < 5
+name: Connect4-Network-Game
+version: 0.1.0.0
 extra-source-files:
 - README.md
 - ChangeLog.md
-
-# Metadata used when publishing your package
-# synopsis:            Short description of your package
-# category:            Web
-
-# To avoid duplicated efforts in documentation and dealing with the
-# complications of embedding Haddock markup inside cabal files, it is
-# common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/yivlad/Connect4-Network-Game#readme>
-
-dependencies:
-- base >= 4.7 && < 5
-
-library:
-  source-dirs: src
-
+author: Vladyslav Yatsenko
+github: yilvad/Connect4-Network-Game
+license: BSD3
 executables:
   Connect4-Network-Game-exe:
-    main:                Main.hs
-    source-dirs:         app
+    source-dirs: app
+    main: Main.hs
     ghc-options:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
     - Connect4-Network-Game
-
-tests:
-  Connect4-Network-Game-test:
-    main:                Spec.hs
-    source-dirs:         test
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
-    dependencies:
-    - Connect4-Network-Game
+description: Please see the README on GitHub at <https://github.com/yivlad/Connect4-Network-Game#readme>
