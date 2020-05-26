@@ -29,37 +29,44 @@ runServer port = do
     chan <- newChan
     (sockR, _ ) <- accept sock
     hdlR <- getHandle sockR
-    forkIO (runClient hdlR R chan)
+    tidR <- forkIO (runClient hdlR R chan)
     (sockY, _ ) <- accept sock
     hdlY <- getHandle sockY
-    forkIO (runClient hdlY Y chan)
+    tidY <- forkIO (runClient hdlY Y chan)
     execStateT (serverLoop chan $ handleForPlayer [(R, hdlR), (Y, hdlY)]) newGame
-    return ()
+    killThread tidR
+    killThread tidY
+    hClose hdlR
+    hClose hdlY
+    close sockR
+    close sockY
 
 serverLoop :: Chan Msg -> (Player -> Handle) -> GameState ()
 serverLoop chan h4p = do
     pos <- get
     case evaluatePosition pos of
-        Win R -> tellWin R h4p
-        Win Y -> tellWin Y h4p
-        Draw -> tellDraw h4p
-        InProgress -> gameIteration chan h4p >> serverLoop chan h4p
+        Win R -> lift $ tellWin R h4p
+        Win Y -> lift $ tellWin Y h4p
+        Draw -> lift $ tellDraw h4p
+        InProgress -> do
+            let hdl = h4p $ turn pos
+            lift $ hPrint hdl $ board pos
+            gameIteration chan h4p
+            serverLoop chan h4p
 
 gameIteration :: Chan Msg -> (Player -> Handle) -> GameState ()
 gameIteration chan h4p = do
     pos <- get
-    let hdlV = h4p $ turn pos
-    lift $ hPrint hdlV $ board pos
     (p, msg) <- lift $ readChan chan
     let move = fromMaybe (-1) (readMaybe msg)
         hdl = h4p p
     if p /= turn pos
         then
-            lift $ hPutStrLn hdl "Not your turn!"
+            lift (hPutStrLn hdl "Not your turn!") >> gameIteration chan h4p
         else
             if move `notElem` legalMoves (board pos)
                 then
-                    lift $ hPutStrLn hdl "Not legal move!"
+                    lift (hPutStrLn hdl "Not legal move!") >> gameIteration chan h4p
                 else
                     modify' (makeMove move)
 
@@ -69,6 +76,7 @@ runClient hdl p chan = do
     handle (\(SomeException _) -> return ()) $ fix $ \loop -> do
         line <- fmap init (hGetLine hdl)
         writeChan chan (p, line)
+        loop
 
 getHandle :: Socket -> IO Handle
 getHandle sock = do
@@ -79,17 +87,13 @@ getHandle sock = do
 handleForPlayer :: [(Player, Handle)] -> Player -> Handle
 handleForPlayer hdlsMap p = snd $ head $ filter ((== p) . fst) hdlsMap
 
-tellWin :: Player -> (Player -> Handle) -> GameState ()
-tellWin p h4p = tellAndClose h4p ((if p == R then "Red" else "Yellow") ++ " wins\n")
+tellWin :: Player -> (Player -> Handle) -> IO ()
+tellWin p h4p = tellAll h4p ((if p == R then "Red" else "Yellow") ++ " wins\n")
 
-tellDraw :: (Player -> Handle) -> GameState ()
-tellDraw h4p = tellAndClose h4p "Draw"
+tellDraw :: (Player -> Handle) -> IO ()
+tellDraw h4p = tellAll h4p "Draw"
 
-tellAndClose :: (Player -> Handle) -> String -> GameState ()
-tellAndClose h4p msg = do
-    let hdlR = h4p R
-        hdlY = h4p Y
-    lift $ hPutStrLn hdlR msg
-    lift $ hClose hdlR
-    lift $ hPutStrLn hdlY msg
-    lift $ hClose hdlY
+tellAll :: (Player -> Handle) -> String -> IO ()
+tellAll h4p msg = do
+    hPutStrLn (h4p R) msg
+    hPutStrLn (h4p Y) msg
