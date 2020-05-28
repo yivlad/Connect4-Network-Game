@@ -26,8 +26,17 @@ author: Vladyslav Yatsenko
 github: yilvad/Connect4-Network-Game
 license: BSD3
 executables:
-  Connect4-Network-Game-exe:
-    source-dirs: app
+  Server-exe:
+    source-dirs: server
+    main: Main.hs
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - Connect4-Network-Game
+  Client-exe:
+    source-dirs: client
     main: Main.hs
     ghc-options:
     - -threaded

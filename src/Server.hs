@@ -34,6 +34,8 @@ runServer port = do
     hdlY <- getHandle sockY
     tidY <- forkIO (runClient hdlY Y chan)
     execStateT (serverLoop chan $ handleForPlayer [(R, hdlR), (Y, hdlY)]) newGame
+    hPutStrLn hdlR "Exit"
+    hPutStrLn hdlY "Exit"
     killThread tidR
     killThread tidY
     hClose hdlR
@@ -74,7 +76,7 @@ runClient :: Handle -> Player -> Chan Msg -> IO()
 runClient hdl p chan = do
     hPrint hdl p
     handle (\(SomeException _) -> return ()) $ fix $ \loop -> do
-        line <- fmap init (hGetLine hdl)
+        line <- hGetLine hdl
         writeChan chan (p, line)
         loop
 

@@ -6,18 +6,25 @@ module GameLogics(
     newGame,
     makeMove,
     legalMoves,
-    evaluatePosition
+    evaluatePosition, 
+    boardToString
 ) where
 
 import Data.List
 
-data Player = R | Y deriving (Show, Eq)
+data Player = R | Y deriving (Show, Eq, Read)
 type Board = [[Player]]
 data Result = Win Player | Draw | InProgress deriving (Show, Eq)
 data Position = Position {
     turn :: Player,
     board :: Board
-} deriving Show
+}
+
+instance Show Position where
+    show pos = boardToString $ board pos
+
+boardToString :: Board -> String
+boardToString b = intercalate "\n" $ transpose $ map (\c -> replicate (6 - length c) '#' ++ concatMap show c) b
 
 newGame :: Position
 newGame = Position R $ replicate 7 []
