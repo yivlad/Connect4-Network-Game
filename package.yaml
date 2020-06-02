@@ -13,6 +13,8 @@ tests:
 copyright: 2020 Vladyslav Yatsenko
 maintainer: example@example.com
 dependencies:
+- time
+- random
 - containers
 - transformers
 - network
@@ -26,8 +28,8 @@ author: Vladyslav Yatsenko
 github: yilvad/Connect4-Network-Game
 license: BSD3
 executables:
-  Server-exe:
-    source-dirs: server
+  Client-exe:
+    source-dirs: client
     main: Main.hs
     ghc-options:
     - -threaded
@@ -35,8 +37,8 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - Connect4-Network-Game
-  Client-exe:
-    source-dirs: client
+  Server-exe:
+    source-dirs: server
     main: Main.hs
     ghc-options:
     - -threaded
