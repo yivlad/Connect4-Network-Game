@@ -53,16 +53,17 @@ backPropagation m Draw = MCT (pos m) (children m) (rWins m) (yWins m) (totalPlay
 backPropagation m InProgress = m
 
 selectNode :: StdGen -> MCT -> (Int, StdGen)
-
 selectNode gen m
-    | totalPlays m == 0 = randomR (0,length chld - 1) gen
+    | not $ null unvisited = (snd $ unvisited !! i, gen')
     | otherwise = (best, gen)
     where
         chld = children m
+        unvisited = filter ((== 0) . totalPlays . fst) (zip chld [0..])
+        (i, gen') = randomR (0,length unvisited - 1) gen
         player = turn $ pos m
         nBig = fromIntegral $ totalPlays m
         ucbs = map ucb chld
-        best = snd $ maximumBy (comparing fst) (zip ucbs [1..])
+        best = snd $ maximumBy (comparing fst) (zip ucbs [0..])
         ucb :: MCT -> Double
         ucb mc = (w / nSmall) + c * sqrt (log nBig / nSmall)
             where
@@ -92,9 +93,9 @@ getBestMove m = fromMaybe (-1) t
         t = elemIndex False $ zipWith (==) bb cb
 
 doMCTS :: StdGen -> Position -> Int -> IO(Int, StdGen)
-doMCTS gen p seconds = do
+doMCTS gen p ms = do
     currentTimestamp <- getCurrentTime
-    let maxTimeStamp = addUTCTime (fromIntegral seconds / 1000) currentTimestamp
+    let maxTimeStamp = addUTCTime (fromIntegral ms / 1000) currentTimestamp
     let startTree = expandNode $ newNode p
     (endTree, gen') <- mctsLoop startTree maxTimeStamp gen
     return (getBestMove endTree, gen')

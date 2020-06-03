@@ -47,9 +47,9 @@ serverLoop :: Chan Msg -> (Player -> Handle) -> GameState ()
 serverLoop chan h4p = do
     pos <- get
     case evaluatePosition pos of
-        Win R -> lift $ tellWin R h4p
-        Win Y -> lift $ tellWin Y h4p
-        Draw -> lift $ tellDraw h4p
+        Win R -> lift $ tellWin R  h4p pos
+        Win Y -> lift $ tellWin Y h4p pos
+        Draw -> lift $ tellDraw h4p pos
         InProgress -> do
             let hdl = h4p $ turn pos
             lift $ hPrint hdl $ board pos
@@ -89,11 +89,15 @@ getHandle sock = do
 handleForPlayer :: [(Player, Handle)] -> Player -> Handle
 handleForPlayer hdlsMap p = snd $ head $ filter ((== p) . fst) hdlsMap
 
-tellWin :: Player -> (Player -> Handle) -> IO ()
-tellWin p h4p = tellAll h4p ((if p == R then "Red" else "Yellow") ++ " wins\n")
+tellWin :: Player -> (Player -> Handle) -> Position -> IO ()
+tellWin p h4p pos = do
+    tellAll h4p (show pos)
+    tellAll h4p ((if p == R then "Red" else "Yellow") ++ " wins\n")
 
-tellDraw :: (Player -> Handle) -> IO ()
-tellDraw h4p = tellAll h4p "Draw"
+tellDraw :: (Player -> Handle) -> Position -> IO ()
+tellDraw h4p pos = do
+    tellAll h4p (show pos)
+    tellAll h4p "Draw"
 
 tellAll :: (Player -> Handle) -> String -> IO ()
 tellAll h4p msg = do

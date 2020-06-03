@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 2d4b866f79c93c02b960235488ce4bde032c8e028eae6e81c92c2daf795f8aa1
+-- hash: 28e1c869e3fcc237f7370d2ee9d28378b18a01f0be0a9d42ff7336d13e12928e
 
 name:           Connect4-Network-Game
 version:        0.1.0.0
@@ -27,6 +27,7 @@ source-repository head
 
 library
   exposed-modules:
+      ComputerPlayer
       GameLogics
       HumanPlayer
       MCTS
@@ -37,6 +38,23 @@ library
       src
   build-depends:
       base >=4.7 && <5
+    , containers
+    , network
+    , random
+    , time
+    , transformers
+  default-language: Haskell2010
+
+executable Client-MCTS-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_Connect4_Network_Game
+  hs-source-dirs:
+      client-mcts
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      Connect4-Network-Game
+    , base >=4.7 && <5
     , containers
     , network
     , random
