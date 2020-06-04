@@ -10,9 +10,9 @@ import GameLogics
 import Data.List
 import Text.Read (readMaybe)
 
-runClient :: IO()
-runClient = do
-    addrinfos <- getAddrInfo Nothing (Just "localhost") (Just "8888")
+runClient :: String -> String -> IO()
+runClient host port = do
+    addrinfos <- getAddrInfo Nothing (Just host) (Just port)
     let serveraddr = head addrinfos
     sock <- socket (addrFamily serveraddr) Stream defaultProtocol
     setSocketOption sock KeepAlive 1

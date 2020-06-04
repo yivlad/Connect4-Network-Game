@@ -10,9 +10,9 @@ import MCTS
 
 data Command = Ignore | Exit | FindMove Position | Unknown
 
-runAIPlayer :: IO ()
-runAIPlayer = do
-    addrinfos <- getAddrInfo Nothing (Just "localhost") (Just "8888")
+runAIPlayer :: String -> String -> IO ()
+runAIPlayer host port = do
+    addrinfos <- getAddrInfo Nothing (Just host) (Just port)
     let serveraddr = head addrinfos
     sock <- socket (addrFamily serveraddr) Stream defaultProtocol
     setSocketOption sock KeepAlive 1
