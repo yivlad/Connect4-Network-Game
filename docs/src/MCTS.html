@@ -28,16 +28,16 @@ Module represents Haskell implementation of Monte Carlo Tree Search. Implemented
 </span><span id="line-23"></span><span>
 </span><span id="line-24"></span><span class="annot"><a href="MCTS.html#newNode"><span class="hs-identifier hs-type">newNode</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="GameLogics.html#Position"><span class="hs-identifier hs-type">Position</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MCTS.html#MCT"><span class="hs-identifier hs-type">MCT</span></a></span><span>
 </span><span id="line-25"></span><span id="newNode"><span class="annot"><span class="annottext">newNode :: Position -&gt; MCT
-</span><a href="MCTS.html#newNode"><span class="hs-identifier hs-var hs-var">newNode</span></a></span></span><span> </span><span id="local-6989586621679058948"><span class="annot"><span class="annottext">p :: Position
-</span><a href="#local-6989586621679058948"><span class="hs-identifier hs-var">p</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Position -&gt; [MCT] -&gt; Int -&gt; Int -&gt; Int -&gt; MCT
+</span><a href="MCTS.html#newNode"><span class="hs-identifier hs-var hs-var">newNode</span></a></span></span><span> </span><span id="local-6989586621679059250"><span class="annot"><span class="annottext">p :: Position
+</span><a href="#local-6989586621679059250"><span class="hs-identifier hs-var">p</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Position -&gt; [MCT] -&gt; Int -&gt; Int -&gt; Int -&gt; MCT
 </span><a href="MCTS.html#MCT"><span class="hs-identifier hs-var">MCT</span></a></span><span> </span><span class="annot"><span class="annottext">Position
-</span><a href="#local-6989586621679058948"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="annot"><span class="hs-number">0</span></span><span> </span><span class="annot"><span class="hs-number">0</span></span><span> </span><span class="annot"><span class="hs-number">0</span></span><span>
+</span><a href="#local-6989586621679059250"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="annot"><span class="hs-number">0</span></span><span> </span><span class="annot"><span class="hs-number">0</span></span><span> </span><span class="annot"><span class="hs-number">0</span></span><span>
 </span><span id="line-26"></span><span>
 </span><span id="line-27"></span><span class="annot"><a href="MCTS.html#expandNode"><span class="hs-identifier hs-type">expandNode</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="MCTS.html#MCT"><span class="hs-identifier hs-type">MCT</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MCTS.html#MCT"><span class="hs-identifier hs-type">MCT</span></a></span><span>
 </span><span id="line-28"></span><span id="expandNode"><span class="annot"><span class="annottext">expandNode :: MCT -&gt; MCT
-</span><a href="MCTS.html#expandNode"><span class="hs-identifier hs-var hs-var">expandNode</span></a></span></span><span> </span><span id="local-6989586621679058946"><span class="annot"><span class="annottext">m :: MCT
-</span><a href="#local-6989586621679058946"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058946"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">{</span><span class="annot"><span class="annottext">children :: [MCT]
+</span><a href="MCTS.html#expandNode"><span class="hs-identifier hs-var hs-var">expandNode</span></a></span></span><span> </span><span id="local-6989586621679059248"><span class="annot"><span class="annottext">m :: MCT
+</span><a href="#local-6989586621679059248"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">MCT
+</span><a href="#local-6989586621679059248"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">{</span><span class="annot"><span class="annottext">children :: [MCT]
 </span><a href="MCTS.html#children"><span class="hs-identifier hs-var">children</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Int -&gt; MCT) -&gt; [Int] -&gt; [MCT]
 forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
 </span><span class="hs-identifier hs-var">map</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; MCT
@@ -50,232 +50,232 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 forall a b c. (a -&gt; b -&gt; c) -&gt; b -&gt; a -&gt; c
 </span><span class="hs-identifier hs-var">flip</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Position -&gt; Position
 </span><a href="GameLogics.html#makeMove"><span class="hs-identifier hs-var">makeMove</span></a></span><span> </span><span class="annot"><span class="annottext">Position
-</span><a href="#local-6989586621679058942"><span class="hs-identifier hs-var">p</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679058941"><span class="hs-identifier hs-var">l</span></a></span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679059244"><span class="hs-identifier hs-var">p</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[Int]
+</span><a href="#local-6989586621679059243"><span class="hs-identifier hs-var">l</span></a></span><span class="hs-special">}</span><span>
 </span><span id="line-29"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-30"></span><span>        </span><span id="local-6989586621679058942"><span class="annot"><span class="annottext">p :: Position
-</span><a href="#local-6989586621679058942"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">MCT -&gt; Position
+</span><span id="line-30"></span><span>        </span><span id="local-6989586621679059244"><span class="annot"><span class="annottext">p :: Position
+</span><a href="#local-6989586621679059244"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">MCT -&gt; Position
 </span><a href="MCTS.html#pos"><span class="hs-identifier hs-var hs-var">pos</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058946"><span class="hs-identifier hs-var">m</span></a></span><span>
-</span><span id="line-31"></span><span>        </span><span id="local-6989586621679058941"><span class="annot"><span class="annottext">l :: [Int]
-</span><a href="#local-6989586621679058941"><span class="hs-identifier hs-var hs-var">l</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Board -&gt; [Int]
+</span><a href="#local-6989586621679059248"><span class="hs-identifier hs-var">m</span></a></span><span>
+</span><span id="line-31"></span><span>        </span><span id="local-6989586621679059243"><span class="annot"><span class="annottext">l :: [Int]
+</span><a href="#local-6989586621679059243"><span class="hs-identifier hs-var hs-var">l</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Board -&gt; [Int]
 </span><a href="GameLogics.html#legalMoves"><span class="hs-identifier hs-var">legalMoves</span></a></span><span> </span><span class="annot"><span class="annottext">(Board -&gt; [Int]) -&gt; Board -&gt; [Int]
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Position -&gt; Board
 </span><a href="GameLogics.html#board"><span class="hs-identifier hs-var hs-var">board</span></a></span><span> </span><span class="annot"><span class="annottext">Position
-</span><a href="#local-6989586621679058942"><span class="hs-identifier hs-var">p</span></a></span><span>
+</span><a href="#local-6989586621679059244"><span class="hs-identifier hs-var">p</span></a></span><span>
 </span><span id="line-32"></span><span>
 </span><span id="line-33"></span><span class="annot"><a href="MCTS.html#rollOut"><span class="hs-identifier hs-type">rollOut</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">StdGen</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GameLogics.html#Position"><span class="hs-identifier hs-type">Position</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GameLogics.html#Result"><span class="hs-identifier hs-type">Result</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-type">StdGen</span></span><span class="hs-special">)</span><span>
 </span><span id="line-34"></span><span id="rollOut"><span class="annot"><span class="annottext">rollOut :: StdGen -&gt; Position -&gt; (Result, StdGen)
-</span><a href="MCTS.html#rollOut"><span class="hs-identifier hs-var hs-var">rollOut</span></a></span></span><span> </span><span id="local-6989586621679058937"><span class="annot"><span class="annottext">gen :: StdGen
-</span><a href="#local-6989586621679058937"><span class="hs-identifier hs-var">gen</span></a></span></span><span> </span><span id="local-6989586621679058936"><span class="annot"><span class="annottext">p :: Position
-</span><a href="#local-6989586621679058936"><span class="hs-identifier hs-var">p</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Position -&gt; Result
+</span><a href="MCTS.html#rollOut"><span class="hs-identifier hs-var hs-var">rollOut</span></a></span></span><span> </span><span id="local-6989586621679059239"><span class="annot"><span class="annottext">gen :: StdGen
+</span><a href="#local-6989586621679059239"><span class="hs-identifier hs-var">gen</span></a></span></span><span> </span><span id="local-6989586621679059238"><span class="annot"><span class="annottext">p :: Position
+</span><a href="#local-6989586621679059238"><span class="hs-identifier hs-var">p</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">Position -&gt; Result
 </span><a href="GameLogics.html#evaluatePosition"><span class="hs-identifier hs-var">evaluatePosition</span></a></span><span> </span><span class="annot"><span class="annottext">Position
-</span><a href="#local-6989586621679058936"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679059238"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-35"></span><span>    </span><span class="annot"><a href="GameLogics.html#InProgress"><span class="hs-identifier hs-type">InProgress</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">StdGen -&gt; Position -&gt; (Result, StdGen)
 </span><a href="MCTS.html#rollOut"><span class="hs-identifier hs-var">rollOut</span></a></span><span> </span><span class="annot"><span class="annottext">StdGen
-</span><a href="#local-6989586621679058933"><span class="hs-identifier hs-var">gen'</span></a></span><span> </span><span class="annot"><span class="annottext">Position
-</span><a href="#local-6989586621679058932"><span class="hs-identifier hs-var">p'</span></a></span><span>
-</span><span id="line-36"></span><span>    </span><span id="local-6989586621679058931"><span class="annot"><span class="annottext">a :: Result
-</span><a href="#local-6989586621679058931"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Result
-</span><a href="#local-6989586621679058931"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">StdGen
-</span><a href="#local-6989586621679058937"><span class="hs-identifier hs-var">gen</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679059235"><span class="hs-identifier hs-var">gen'</span></a></span><span> </span><span class="annot"><span class="annottext">Position
+</span><a href="#local-6989586621679059234"><span class="hs-identifier hs-var">p'</span></a></span><span>
+</span><span id="line-36"></span><span>    </span><span id="local-6989586621679059233"><span class="annot"><span class="annottext">a :: Result
+</span><a href="#local-6989586621679059233"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Result
+</span><a href="#local-6989586621679059233"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">StdGen
+</span><a href="#local-6989586621679059239"><span class="hs-identifier hs-var">gen</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-37"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-38"></span><span>        </span><span id="local-6989586621679058930"><span class="annot"><span class="annottext">l :: [Int]
-</span><a href="#local-6989586621679058930"><span class="hs-identifier hs-var hs-var">l</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Board -&gt; [Int]
+</span><span id="line-38"></span><span>        </span><span id="local-6989586621679059232"><span class="annot"><span class="annottext">l :: [Int]
+</span><a href="#local-6989586621679059232"><span class="hs-identifier hs-var hs-var">l</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Board -&gt; [Int]
 </span><a href="GameLogics.html#legalMoves"><span class="hs-identifier hs-var">legalMoves</span></a></span><span> </span><span class="annot"><span class="annottext">(Board -&gt; [Int]) -&gt; Board -&gt; [Int]
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Position -&gt; Board
 </span><a href="GameLogics.html#board"><span class="hs-identifier hs-var hs-var">board</span></a></span><span> </span><span class="annot"><span class="annottext">Position
-</span><a href="#local-6989586621679058936"><span class="hs-identifier hs-var">p</span></a></span><span>
-</span><span id="line-39"></span><span>        </span><span class="hs-special">(</span><span id="local-6989586621679058929"><span class="annot"><span class="annottext">i :: Int
-</span><a href="#local-6989586621679058929"><span class="hs-identifier hs-var">i</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679058933"><span class="annot"><span class="annottext">gen' :: StdGen
-</span><a href="#local-6989586621679058933"><span class="hs-identifier hs-var">gen'</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Int, Int) -&gt; StdGen -&gt; (Int, StdGen)
+</span><a href="#local-6989586621679059238"><span class="hs-identifier hs-var">p</span></a></span><span>
+</span><span id="line-39"></span><span>        </span><span class="hs-special">(</span><span id="local-6989586621679059231"><span class="annot"><span class="annottext">i :: Int
+</span><a href="#local-6989586621679059231"><span class="hs-identifier hs-var">i</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679059235"><span class="annot"><span class="annottext">gen' :: StdGen
+</span><a href="#local-6989586621679059235"><span class="hs-identifier hs-var">gen'</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Int, Int) -&gt; StdGen -&gt; (Int, StdGen)
 forall a g. (Random a, RandomGen g) =&gt; (a, a) -&gt; g -&gt; (a, g)
 </span><span class="hs-identifier hs-var">randomR</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-number">0</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">[Int] -&gt; Int
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
 </span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679058930"><span class="hs-identifier hs-var">l</span></a></span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+</span><a href="#local-6989586621679059232"><span class="hs-identifier hs-var">l</span></a></span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
 forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-glyph hs-var">-</span></span><span class="annot"><span class="hs-number">1</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">StdGen
-</span><a href="#local-6989586621679058937"><span class="hs-identifier hs-var">gen</span></a></span><span>
-</span><span id="line-40"></span><span>        </span><span id="local-6989586621679058932"><span class="annot"><span class="annottext">p' :: Position
-</span><a href="#local-6989586621679058932"><span class="hs-identifier hs-var hs-var">p'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Position -&gt; Position
+</span><a href="#local-6989586621679059239"><span class="hs-identifier hs-var">gen</span></a></span><span>
+</span><span id="line-40"></span><span>        </span><span id="local-6989586621679059234"><span class="annot"><span class="annottext">p' :: Position
+</span><a href="#local-6989586621679059234"><span class="hs-identifier hs-var hs-var">p'</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Position -&gt; Position
 </span><a href="GameLogics.html#makeMove"><span class="hs-identifier hs-var">makeMove</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679058930"><span class="hs-identifier hs-var">l</span></a></span><span> </span><span class="annot"><span class="annottext">[Int] -&gt; Int -&gt; Int
+</span><a href="#local-6989586621679059232"><span class="hs-identifier hs-var">l</span></a></span><span> </span><span class="annot"><span class="annottext">[Int] -&gt; Int -&gt; Int
 forall a. [a] -&gt; Int -&gt; a
 </span><span class="hs-operator hs-var">!!</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679058929"><span class="hs-identifier hs-var">i</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Position
-</span><a href="#local-6989586621679058936"><span class="hs-identifier hs-var">p</span></a></span><span>
+</span><a href="#local-6989586621679059231"><span class="hs-identifier hs-var">i</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Position
+</span><a href="#local-6989586621679059238"><span class="hs-identifier hs-var">p</span></a></span><span>
 </span><span id="line-41"></span><span>
 </span><span id="line-42"></span><span class="annot"><a href="MCTS.html#mcts"><span class="hs-identifier hs-type">mcts</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">StdGen</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MCTS.html#MCT"><span class="hs-identifier hs-type">MCT</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="MCTS.html#MCT"><span class="hs-identifier hs-type">MCT</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="GameLogics.html#Result"><span class="hs-identifier hs-type">Result</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-type">StdGen</span></span><span class="hs-special">)</span><span>
 </span><span id="line-43"></span><span id="mcts"><span class="annot"><span class="annottext">mcts :: StdGen -&gt; MCT -&gt; (MCT, Result, StdGen)
-</span><a href="MCTS.html#mcts"><span class="hs-identifier hs-var hs-var">mcts</span></a></span></span><span> </span><span id="local-6989586621679058924"><span class="annot"><span class="annottext">gen :: StdGen
-</span><a href="#local-6989586621679058924"><span class="hs-identifier hs-var">gen</span></a></span></span><span> </span><span id="local-6989586621679058923"><span class="annot"><span class="annottext">m :: MCT
-</span><a href="#local-6989586621679058923"><span class="hs-identifier hs-var">m</span></a></span></span><span>
+</span><a href="MCTS.html#mcts"><span class="hs-identifier hs-var hs-var">mcts</span></a></span></span><span> </span><span id="local-6989586621679059226"><span class="annot"><span class="annottext">gen :: StdGen
+</span><a href="#local-6989586621679059226"><span class="hs-identifier hs-var">gen</span></a></span></span><span> </span><span id="local-6989586621679059225"><span class="annot"><span class="annottext">m :: MCT
+</span><a href="#local-6989586621679059225"><span class="hs-identifier hs-var">m</span></a></span></span><span>
 </span><span id="line-44"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Result
-</span><a href="#local-6989586621679058922"><span class="hs-identifier hs-var">s</span></a></span><span> </span><span class="annot"><span class="annottext">Result -&gt; Result -&gt; Bool
+</span><a href="#local-6989586621679059224"><span class="hs-identifier hs-var">s</span></a></span><span> </span><span class="annot"><span class="annottext">Result -&gt; Result -&gt; Bool
 forall a. Eq a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">/=</span></span><span> </span><span class="annot"><span class="annottext">Result
 </span><a href="GameLogics.html#InProgress"><span class="hs-identifier hs-var">InProgress</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Result -&gt; MCT
 </span><a href="MCTS.html#backPropagation"><span class="hs-identifier hs-var">backPropagation</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058923"><span class="hs-identifier hs-var">m</span></a></span><span> </span><span class="annot"><span class="annottext">Result
-</span><a href="#local-6989586621679058922"><span class="hs-identifier hs-var">s</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Result
-</span><a href="#local-6989586621679058922"><span class="hs-identifier hs-var">s</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">StdGen
-</span><a href="#local-6989586621679058924"><span class="hs-identifier hs-var">gen</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679059225"><span class="hs-identifier hs-var">m</span></a></span><span> </span><span class="annot"><span class="annottext">Result
+</span><a href="#local-6989586621679059224"><span class="hs-identifier hs-var">s</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Result
+</span><a href="#local-6989586621679059224"><span class="hs-identifier hs-var">s</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">StdGen
+</span><a href="#local-6989586621679059226"><span class="hs-identifier hs-var">gen</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-45"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">MCT -&gt; Int
 </span><a href="MCTS.html#totalPlays"><span class="hs-identifier hs-var hs-var">totalPlays</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058923"><span class="hs-identifier hs-var">m</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
+</span><a href="#local-6989586621679059225"><span class="hs-identifier hs-var">m</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
 forall a. Eq a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">==</span></span><span> </span><span class="annot"><span class="hs-number">0</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Result -&gt; MCT
 </span><a href="MCTS.html#backPropagation"><span class="hs-identifier hs-var">backPropagation</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058923"><span class="hs-identifier hs-var">m</span></a></span><span> </span><span class="annot"><span class="annottext">Result
-</span><a href="#local-6989586621679058919"><span class="hs-identifier hs-var">r</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Result
-</span><a href="#local-6989586621679058919"><span class="hs-identifier hs-var">r</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">StdGen
-</span><a href="#local-6989586621679058918"><span class="hs-identifier hs-var">gen'</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679059225"><span class="hs-identifier hs-var">m</span></a></span><span> </span><span class="annot"><span class="annottext">Result
+</span><a href="#local-6989586621679059221"><span class="hs-identifier hs-var">r</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Result
+</span><a href="#local-6989586621679059221"><span class="hs-identifier hs-var">r</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">StdGen
+</span><a href="#local-6989586621679059220"><span class="hs-identifier hs-var">gen'</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-46"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><span class="hs-identifier hs-var">otherwise</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058917"><span class="hs-identifier hs-var">modifiedNode</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Result
-</span><a href="#local-6989586621679058916"><span class="hs-identifier hs-var">resChild</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">StdGen
-</span><a href="#local-6989586621679058915"><span class="hs-identifier hs-var">gen'''</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679059219"><span class="hs-identifier hs-var">modifiedNode</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Result
+</span><a href="#local-6989586621679059218"><span class="hs-identifier hs-var">resChild</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">StdGen
+</span><a href="#local-6989586621679059217"><span class="hs-identifier hs-var">gen'''</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-47"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-48"></span><span>        </span><span id="local-6989586621679058922"><span class="annot"><span class="annottext">s :: Result
-</span><a href="#local-6989586621679058922"><span class="hs-identifier hs-var hs-var">s</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Position -&gt; Result
+</span><span id="line-48"></span><span>        </span><span id="local-6989586621679059224"><span class="annot"><span class="annottext">s :: Result
+</span><a href="#local-6989586621679059224"><span class="hs-identifier hs-var hs-var">s</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Position -&gt; Result
 </span><a href="GameLogics.html#evaluatePosition"><span class="hs-identifier hs-var">evaluatePosition</span></a></span><span> </span><span class="annot"><span class="annottext">(Position -&gt; Result) -&gt; Position -&gt; Result
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">MCT -&gt; Position
 </span><a href="MCTS.html#pos"><span class="hs-identifier hs-var hs-var">pos</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058923"><span class="hs-identifier hs-var">m</span></a></span><span>
-</span><span id="line-49"></span><span>        </span><span class="hs-special">(</span><span id="local-6989586621679058919"><span class="annot"><span class="annottext">r :: Result
-</span><a href="#local-6989586621679058919"><span class="hs-identifier hs-var">r</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679058918"><span class="annot"><span class="annottext">gen' :: StdGen
-</span><a href="#local-6989586621679058918"><span class="hs-identifier hs-var">gen'</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">StdGen -&gt; Position -&gt; (Result, StdGen)
+</span><a href="#local-6989586621679059225"><span class="hs-identifier hs-var">m</span></a></span><span>
+</span><span id="line-49"></span><span>        </span><span class="hs-special">(</span><span id="local-6989586621679059221"><span class="annot"><span class="annottext">r :: Result
+</span><a href="#local-6989586621679059221"><span class="hs-identifier hs-var">r</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679059220"><span class="annot"><span class="annottext">gen' :: StdGen
+</span><a href="#local-6989586621679059220"><span class="hs-identifier hs-var">gen'</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">StdGen -&gt; Position -&gt; (Result, StdGen)
 </span><a href="MCTS.html#rollOut"><span class="hs-identifier hs-var">rollOut</span></a></span><span> </span><span class="annot"><span class="annottext">StdGen
-</span><a href="#local-6989586621679058924"><span class="hs-identifier hs-var">gen</span></a></span><span> </span><span class="annot"><span class="annottext">(Position -&gt; (Result, StdGen)) -&gt; Position -&gt; (Result, StdGen)
+</span><a href="#local-6989586621679059226"><span class="hs-identifier hs-var">gen</span></a></span><span> </span><span class="annot"><span class="annottext">(Position -&gt; (Result, StdGen)) -&gt; Position -&gt; (Result, StdGen)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">MCT -&gt; Position
 </span><a href="MCTS.html#pos"><span class="hs-identifier hs-var hs-var">pos</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058923"><span class="hs-identifier hs-var">m</span></a></span><span>
-</span><span id="line-50"></span><span>        </span><span class="hs-special">(</span><span id="local-6989586621679058914"><span class="annot"><span class="annottext">selectedIndex :: Int
-</span><a href="#local-6989586621679058914"><span class="hs-identifier hs-var">selectedIndex</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679058913"><span class="annot"><span class="annottext">gen'' :: StdGen
-</span><a href="#local-6989586621679058913"><span class="hs-identifier hs-var">gen''</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">StdGen -&gt; MCT -&gt; (Int, StdGen)
+</span><a href="#local-6989586621679059225"><span class="hs-identifier hs-var">m</span></a></span><span>
+</span><span id="line-50"></span><span>        </span><span class="hs-special">(</span><span id="local-6989586621679059216"><span class="annot"><span class="annottext">selectedIndex :: Int
+</span><a href="#local-6989586621679059216"><span class="hs-identifier hs-var">selectedIndex</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679059215"><span class="annot"><span class="annottext">gen'' :: StdGen
+</span><a href="#local-6989586621679059215"><span class="hs-identifier hs-var">gen''</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">StdGen -&gt; MCT -&gt; (Int, StdGen)
 </span><a href="MCTS.html#selectNode"><span class="hs-identifier hs-var">selectNode</span></a></span><span> </span><span class="annot"><span class="annottext">StdGen
-</span><a href="#local-6989586621679058924"><span class="hs-identifier hs-var">gen</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058923"><span class="hs-identifier hs-var">m</span></a></span><span>
-</span><span id="line-51"></span><span>        </span><span class="hs-special">(</span><span id="local-6989586621679058911"><span class="annot"><span class="annottext">selectedChild :: MCT
-</span><a href="#local-6989586621679058911"><span class="hs-identifier hs-var">selectedChild</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679058910"><span class="annot"><span class="annottext">rest :: [MCT]
-</span><a href="#local-6989586621679058910"><span class="hs-identifier hs-var">rest</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; [MCT] -&gt; (MCT, [MCT])
+</span><a href="#local-6989586621679059226"><span class="hs-identifier hs-var">gen</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
+</span><a href="#local-6989586621679059225"><span class="hs-identifier hs-var">m</span></a></span><span>
+</span><span id="line-51"></span><span>        </span><span class="hs-special">(</span><span id="local-6989586621679059213"><span class="annot"><span class="annottext">selectedChild :: MCT
+</span><a href="#local-6989586621679059213"><span class="hs-identifier hs-var">selectedChild</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679059212"><span class="annot"><span class="annottext">rest :: [MCT]
+</span><a href="#local-6989586621679059212"><span class="hs-identifier hs-var">rest</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; [MCT] -&gt; (MCT, [MCT])
 forall a. Int -&gt; [a] -&gt; (a, [a])
 </span><a href="MCTS.html#extract"><span class="hs-identifier hs-var">extract</span></a></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679058914"><span class="hs-identifier hs-var">selectedIndex</span></a></span><span> </span><span class="annot"><span class="annottext">([MCT] -&gt; (MCT, [MCT])) -&gt; [MCT] -&gt; (MCT, [MCT])
+</span><a href="#local-6989586621679059216"><span class="hs-identifier hs-var">selectedIndex</span></a></span><span> </span><span class="annot"><span class="annottext">([MCT] -&gt; (MCT, [MCT])) -&gt; [MCT] -&gt; (MCT, [MCT])
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">MCT -&gt; [MCT]
 </span><a href="MCTS.html#children"><span class="hs-identifier hs-var hs-var">children</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058923"><span class="hs-identifier hs-var">m</span></a></span><span>
-</span><span id="line-52"></span><span>        </span><span class="hs-special">(</span><span id="local-6989586621679058908"><span class="annot"><span class="annottext">modifiedChild :: MCT
-</span><a href="#local-6989586621679058908"><span class="hs-identifier hs-var">modifiedChild</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679058916"><span class="annot"><span class="annottext">resChild :: Result
-</span><a href="#local-6989586621679058916"><span class="hs-identifier hs-var">resChild</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679058915"><span class="annot"><span class="annottext">gen''' :: StdGen
-</span><a href="#local-6989586621679058915"><span class="hs-identifier hs-var">gen'''</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">StdGen -&gt; MCT -&gt; (MCT, Result, StdGen)
+</span><a href="#local-6989586621679059225"><span class="hs-identifier hs-var">m</span></a></span><span>
+</span><span id="line-52"></span><span>        </span><span class="hs-special">(</span><span id="local-6989586621679059210"><span class="annot"><span class="annottext">modifiedChild :: MCT
+</span><a href="#local-6989586621679059210"><span class="hs-identifier hs-var">modifiedChild</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679059218"><span class="annot"><span class="annottext">resChild :: Result
+</span><a href="#local-6989586621679059218"><span class="hs-identifier hs-var">resChild</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679059217"><span class="annot"><span class="annottext">gen''' :: StdGen
+</span><a href="#local-6989586621679059217"><span class="hs-identifier hs-var">gen'''</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">StdGen -&gt; MCT -&gt; (MCT, Result, StdGen)
 </span><a href="MCTS.html#mcts"><span class="hs-identifier hs-var">mcts</span></a></span><span> </span><span class="annot"><span class="annottext">StdGen
-</span><a href="#local-6989586621679058913"><span class="hs-identifier hs-var">gen''</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058911"><span class="hs-identifier hs-var">selectedChild</span></a></span><span>
-</span><span id="line-53"></span><span>        </span><span id="local-6989586621679058917"><span class="annot"><span class="annottext">modifiedNode :: MCT
-</span><a href="#local-6989586621679058917"><span class="hs-identifier hs-var hs-var">modifiedNode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">MCT -&gt; Result -&gt; MCT
+</span><a href="#local-6989586621679059215"><span class="hs-identifier hs-var">gen''</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
+</span><a href="#local-6989586621679059213"><span class="hs-identifier hs-var">selectedChild</span></a></span><span>
+</span><span id="line-53"></span><span>        </span><span id="local-6989586621679059219"><span class="annot"><span class="annottext">modifiedNode :: MCT
+</span><a href="#local-6989586621679059219"><span class="hs-identifier hs-var hs-var">modifiedNode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">MCT -&gt; Result -&gt; MCT
 </span><a href="MCTS.html#backPropagation"><span class="hs-identifier hs-var">backPropagation</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058923"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">{</span><span class="annot"><span class="annottext">children :: [MCT]
+</span><a href="#local-6989586621679059225"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">{</span><span class="annot"><span class="annottext">children :: [MCT]
 </span><a href="MCTS.html#children"><span class="hs-identifier hs-var">children</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058908"><span class="hs-identifier hs-var">modifiedChild</span></a></span><span class="annot"><span class="annottext">MCT -&gt; [MCT] -&gt; [MCT]
+</span><a href="#local-6989586621679059210"><span class="hs-identifier hs-var">modifiedChild</span></a></span><span class="annot"><span class="annottext">MCT -&gt; [MCT] -&gt; [MCT]
 forall a. a -&gt; [a] -&gt; [a]
 </span><span class="hs-glyph hs-var">:</span></span><span class="annot"><span class="annottext">[MCT]
-</span><a href="#local-6989586621679058910"><span class="hs-identifier hs-var">rest</span></a></span><span class="hs-special">}</span><span> </span><span class="annot"><span class="annottext">Result
-</span><a href="#local-6989586621679058916"><span class="hs-identifier hs-var">resChild</span></a></span><span>
+</span><a href="#local-6989586621679059212"><span class="hs-identifier hs-var">rest</span></a></span><span class="hs-special">}</span><span> </span><span class="annot"><span class="annottext">Result
+</span><a href="#local-6989586621679059218"><span class="hs-identifier hs-var">resChild</span></a></span><span>
 </span><span id="line-54"></span><span>
 </span><span id="line-55"></span><span class="annot"><a href="MCTS.html#backPropagation"><span class="hs-identifier hs-type">backPropagation</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="MCTS.html#MCT"><span class="hs-identifier hs-type">MCT</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="GameLogics.html#Result"><span class="hs-identifier hs-type">Result</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MCTS.html#MCT"><span class="hs-identifier hs-type">MCT</span></a></span><span>
 </span><span id="line-56"></span><span id="backPropagation"><span class="annot"><span class="annottext">backPropagation :: MCT -&gt; Result -&gt; MCT
-</span><a href="MCTS.html#backPropagation"><span class="hs-identifier hs-var hs-var">backPropagation</span></a></span></span><span> </span><span id="local-6989586621679058907"><span class="annot"><span class="annottext">m :: MCT
-</span><a href="#local-6989586621679058907"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GameLogics.html#Win"><span class="hs-identifier hs-type">Win</span></a></span><span> </span><span class="annot"><a href="GameLogics.html#R"><span class="hs-identifier hs-type">R</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Position -&gt; [MCT] -&gt; Int -&gt; Int -&gt; Int -&gt; MCT
+</span><a href="MCTS.html#backPropagation"><span class="hs-identifier hs-var hs-var">backPropagation</span></a></span></span><span> </span><span id="local-6989586621679059209"><span class="annot"><span class="annottext">m :: MCT
+</span><a href="#local-6989586621679059209"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GameLogics.html#Win"><span class="hs-identifier hs-type">Win</span></a></span><span> </span><span class="annot"><a href="GameLogics.html#R"><span class="hs-identifier hs-type">R</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Position -&gt; [MCT] -&gt; Int -&gt; Int -&gt; Int -&gt; MCT
 </span><a href="MCTS.html#MCT"><span class="hs-identifier hs-var">MCT</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Position
 </span><a href="MCTS.html#pos"><span class="hs-identifier hs-var hs-var">pos</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058907"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; [MCT]
+</span><a href="#local-6989586621679059209"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; [MCT]
 </span><a href="MCTS.html#children"><span class="hs-identifier hs-var hs-var">children</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058907"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Int
+</span><a href="#local-6989586621679059209"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Int
 </span><a href="MCTS.html#rWins"><span class="hs-identifier hs-var hs-var">rWins</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058907"><span class="hs-identifier hs-var">m</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+</span><a href="#local-6989586621679059209"><span class="hs-identifier hs-var">m</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
 forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">+</span></span><span> </span><span class="annot"><span class="hs-number">1</span></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Int
 </span><a href="MCTS.html#yWins"><span class="hs-identifier hs-var hs-var">yWins</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058907"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Int
+</span><a href="#local-6989586621679059209"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Int
 </span><a href="MCTS.html#totalPlays"><span class="hs-identifier hs-var hs-var">totalPlays</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058907"><span class="hs-identifier hs-var">m</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+</span><a href="#local-6989586621679059209"><span class="hs-identifier hs-var">m</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
 forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">+</span></span><span> </span><span class="annot"><span class="hs-number">1</span></span><span class="hs-special">)</span><span>
-</span><span id="line-57"></span><span class="annot"><a href="MCTS.html#backPropagation"><span class="hs-identifier hs-var">backPropagation</span></a></span><span> </span><span id="local-6989586621679058903"><span class="annot"><span class="annottext">m :: MCT
-</span><a href="#local-6989586621679058903"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GameLogics.html#Win"><span class="hs-identifier hs-type">Win</span></a></span><span> </span><span class="annot"><a href="GameLogics.html#Y"><span class="hs-identifier hs-type">Y</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Position -&gt; [MCT] -&gt; Int -&gt; Int -&gt; Int -&gt; MCT
+</span><span id="line-57"></span><span class="annot"><a href="MCTS.html#backPropagation"><span class="hs-identifier hs-var">backPropagation</span></a></span><span> </span><span id="local-6989586621679059205"><span class="annot"><span class="annottext">m :: MCT
+</span><a href="#local-6989586621679059205"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="GameLogics.html#Win"><span class="hs-identifier hs-type">Win</span></a></span><span> </span><span class="annot"><a href="GameLogics.html#Y"><span class="hs-identifier hs-type">Y</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Position -&gt; [MCT] -&gt; Int -&gt; Int -&gt; Int -&gt; MCT
 </span><a href="MCTS.html#MCT"><span class="hs-identifier hs-var">MCT</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Position
 </span><a href="MCTS.html#pos"><span class="hs-identifier hs-var hs-var">pos</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058903"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; [MCT]
+</span><a href="#local-6989586621679059205"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; [MCT]
 </span><a href="MCTS.html#children"><span class="hs-identifier hs-var hs-var">children</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058903"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Int
+</span><a href="#local-6989586621679059205"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Int
 </span><a href="MCTS.html#rWins"><span class="hs-identifier hs-var hs-var">rWins</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058903"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Int
+</span><a href="#local-6989586621679059205"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Int
 </span><a href="MCTS.html#yWins"><span class="hs-identifier hs-var hs-var">yWins</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058903"><span class="hs-identifier hs-var">m</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+</span><a href="#local-6989586621679059205"><span class="hs-identifier hs-var">m</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
 forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">+</span></span><span> </span><span class="annot"><span class="hs-number">1</span></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Int
 </span><a href="MCTS.html#totalPlays"><span class="hs-identifier hs-var hs-var">totalPlays</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058903"><span class="hs-identifier hs-var">m</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+</span><a href="#local-6989586621679059205"><span class="hs-identifier hs-var">m</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
 forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">+</span></span><span> </span><span class="annot"><span class="hs-number">1</span></span><span class="hs-special">)</span><span>
-</span><span id="line-58"></span><span class="annot"><a href="MCTS.html#backPropagation"><span class="hs-identifier hs-var">backPropagation</span></a></span><span> </span><span id="local-6989586621679058901"><span class="annot"><span class="annottext">m :: MCT
-</span><a href="#local-6989586621679058901"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span class="annot"><a href="GameLogics.html#Draw"><span class="hs-identifier hs-type">Draw</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Position -&gt; [MCT] -&gt; Int -&gt; Int -&gt; Int -&gt; MCT
+</span><span id="line-58"></span><span class="annot"><a href="MCTS.html#backPropagation"><span class="hs-identifier hs-var">backPropagation</span></a></span><span> </span><span id="local-6989586621679059203"><span class="annot"><span class="annottext">m :: MCT
+</span><a href="#local-6989586621679059203"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span class="annot"><a href="GameLogics.html#Draw"><span class="hs-identifier hs-type">Draw</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Position -&gt; [MCT] -&gt; Int -&gt; Int -&gt; Int -&gt; MCT
 </span><a href="MCTS.html#MCT"><span class="hs-identifier hs-var">MCT</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Position
 </span><a href="MCTS.html#pos"><span class="hs-identifier hs-var hs-var">pos</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058901"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; [MCT]
+</span><a href="#local-6989586621679059203"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; [MCT]
 </span><a href="MCTS.html#children"><span class="hs-identifier hs-var hs-var">children</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058901"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Int
+</span><a href="#local-6989586621679059203"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Int
 </span><a href="MCTS.html#rWins"><span class="hs-identifier hs-var hs-var">rWins</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058901"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Int
+</span><a href="#local-6989586621679059203"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Int
 </span><a href="MCTS.html#yWins"><span class="hs-identifier hs-var hs-var">yWins</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058901"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Int
+</span><a href="#local-6989586621679059203"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Int
 </span><a href="MCTS.html#totalPlays"><span class="hs-identifier hs-var hs-var">totalPlays</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058901"><span class="hs-identifier hs-var">m</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+</span><a href="#local-6989586621679059203"><span class="hs-identifier hs-var">m</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
 forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">+</span></span><span> </span><span class="annot"><span class="hs-number">1</span></span><span class="hs-special">)</span><span>
-</span><span id="line-59"></span><span class="annot"><a href="MCTS.html#backPropagation"><span class="hs-identifier hs-var">backPropagation</span></a></span><span> </span><span id="local-6989586621679058899"><span class="annot"><span class="annottext">m :: MCT
-</span><a href="#local-6989586621679058899"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span class="annot"><a href="GameLogics.html#InProgress"><span class="hs-identifier hs-type">InProgress</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058899"><span class="hs-identifier hs-var">m</span></a></span><span>
+</span><span id="line-59"></span><span class="annot"><a href="MCTS.html#backPropagation"><span class="hs-identifier hs-var">backPropagation</span></a></span><span> </span><span id="local-6989586621679059201"><span class="annot"><span class="annottext">m :: MCT
+</span><a href="#local-6989586621679059201"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span class="annot"><a href="GameLogics.html#InProgress"><span class="hs-identifier hs-type">InProgress</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">MCT
+</span><a href="#local-6989586621679059201"><span class="hs-identifier hs-var">m</span></a></span><span>
 </span><span id="line-60"></span><span>
 </span><span id="line-61"></span><span class="annot"><a href="MCTS.html#selectNode"><span class="hs-identifier hs-type">selectNode</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">StdGen</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MCTS.html#MCT"><span class="hs-identifier hs-type">MCT</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-type">StdGen</span></span><span class="hs-special">)</span><span>
 </span><span id="line-62"></span><span id="selectNode"><span class="annot"><span class="annottext">selectNode :: StdGen -&gt; MCT -&gt; (Int, StdGen)
-</span><a href="MCTS.html#selectNode"><span class="hs-identifier hs-var hs-var">selectNode</span></a></span></span><span> </span><span id="local-6989586621679058898"><span class="annot"><span class="annottext">gen :: StdGen
-</span><a href="#local-6989586621679058898"><span class="hs-identifier hs-var">gen</span></a></span></span><span> </span><span id="local-6989586621679058897"><span class="annot"><span class="annottext">m :: MCT
-</span><a href="#local-6989586621679058897"><span class="hs-identifier hs-var">m</span></a></span></span><span>
+</span><a href="MCTS.html#selectNode"><span class="hs-identifier hs-var hs-var">selectNode</span></a></span></span><span> </span><span id="local-6989586621679059200"><span class="annot"><span class="annottext">gen :: StdGen
+</span><a href="#local-6989586621679059200"><span class="hs-identifier hs-var">gen</span></a></span></span><span> </span><span id="local-6989586621679059199"><span class="annot"><span class="annottext">m :: MCT
+</span><a href="#local-6989586621679059199"><span class="hs-identifier hs-var">m</span></a></span></span><span>
 </span><span id="line-63"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Bool
 </span><span class="hs-identifier hs-var">not</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; Bool) -&gt; Bool -&gt; Bool
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">[(MCT, Int)] -&gt; Bool
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
 </span><span class="hs-identifier hs-var">null</span></span><span> </span><span class="annot"><span class="annottext">[(MCT, Int)]
-</span><a href="#local-6989586621679058894"><span class="hs-identifier hs-var">unvisited</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(MCT, Int) -&gt; Int
+</span><a href="#local-6989586621679059196"><span class="hs-identifier hs-var">unvisited</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(MCT, Int) -&gt; Int
 forall a b. (a, b) -&gt; b
 </span><span class="hs-identifier hs-var">snd</span></span><span> </span><span class="annot"><span class="annottext">((MCT, Int) -&gt; Int) -&gt; (MCT, Int) -&gt; Int
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">[(MCT, Int)]
-</span><a href="#local-6989586621679058894"><span class="hs-identifier hs-var">unvisited</span></a></span><span> </span><span class="annot"><span class="annottext">[(MCT, Int)] -&gt; Int -&gt; (MCT, Int)
+</span><a href="#local-6989586621679059196"><span class="hs-identifier hs-var">unvisited</span></a></span><span> </span><span class="annot"><span class="annottext">[(MCT, Int)] -&gt; Int -&gt; (MCT, Int)
 forall a. [a] -&gt; Int -&gt; a
 </span><span class="hs-operator hs-var">!!</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679058893"><span class="hs-identifier hs-var">i</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">StdGen
-</span><a href="#local-6989586621679058892"><span class="hs-identifier hs-var">gen'</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679059195"><span class="hs-identifier hs-var">i</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">StdGen
+</span><a href="#local-6989586621679059194"><span class="hs-identifier hs-var">gen'</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-64"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
 </span><span class="hs-identifier hs-var">otherwise</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679058891"><span class="hs-identifier hs-var">best</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">StdGen
-</span><a href="#local-6989586621679058898"><span class="hs-identifier hs-var">gen</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679059193"><span class="hs-identifier hs-var">best</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">StdGen
+</span><a href="#local-6989586621679059200"><span class="hs-identifier hs-var">gen</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-65"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-66"></span><span>        </span><span id="local-6989586621679058890"><span class="annot"><span class="annottext">chld :: [MCT]
-</span><a href="#local-6989586621679058890"><span class="hs-identifier hs-var hs-var">chld</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">MCT -&gt; [MCT]
+</span><span id="line-66"></span><span>        </span><span id="local-6989586621679059192"><span class="annot"><span class="annottext">chld :: [MCT]
+</span><a href="#local-6989586621679059192"><span class="hs-identifier hs-var hs-var">chld</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">MCT -&gt; [MCT]
 </span><a href="MCTS.html#children"><span class="hs-identifier hs-var hs-var">children</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058897"><span class="hs-identifier hs-var">m</span></a></span><span>
-</span><span id="line-67"></span><span>        </span><span id="local-6989586621679058894"><span class="annot"><span class="annottext">unvisited :: [(MCT, Int)]
-</span><a href="#local-6989586621679058894"><span class="hs-identifier hs-var hs-var">unvisited</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">((MCT, Int) -&gt; Bool) -&gt; [(MCT, Int)] -&gt; [(MCT, Int)]
+</span><a href="#local-6989586621679059199"><span class="hs-identifier hs-var">m</span></a></span><span>
+</span><span id="line-67"></span><span>        </span><span id="local-6989586621679059196"><span class="annot"><span class="annottext">unvisited :: [(MCT, Int)]
+</span><a href="#local-6989586621679059196"><span class="hs-identifier hs-var hs-var">unvisited</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">((MCT, Int) -&gt; Bool) -&gt; [(MCT, Int)] -&gt; [(MCT, Int)]
 forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
 </span><span class="hs-identifier hs-var">filter</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
 forall a. Eq a =&gt; a -&gt; a -&gt; Bool
@@ -289,41 +289,41 @@ forall a b. (a, b) -&gt; a
 </span><span class="hs-identifier hs-var">fst</span></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[MCT] -&gt; [Int] -&gt; [(MCT, Int)]
 forall a b. [a] -&gt; [b] -&gt; [(a, b)]
 </span><span class="hs-identifier hs-var">zip</span></span><span> </span><span class="annot"><span class="annottext">[MCT]
-</span><a href="#local-6989586621679058890"><span class="hs-identifier hs-var">chld</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-number">0</span></span><span class="hs-glyph">..</span><span class="hs-special">]</span><span class="hs-special">)</span><span>
-</span><span id="line-68"></span><span>        </span><span class="hs-special">(</span><span id="local-6989586621679058893"><span class="annot"><span class="annottext">i :: Int
-</span><a href="#local-6989586621679058893"><span class="hs-identifier hs-var">i</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679058892"><span class="annot"><span class="annottext">gen' :: StdGen
-</span><a href="#local-6989586621679058892"><span class="hs-identifier hs-var">gen'</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Int, Int) -&gt; StdGen -&gt; (Int, StdGen)
+</span><a href="#local-6989586621679059192"><span class="hs-identifier hs-var">chld</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-number">0</span></span><span class="hs-glyph">..</span><span class="hs-special">]</span><span class="hs-special">)</span><span>
+</span><span id="line-68"></span><span>        </span><span class="hs-special">(</span><span id="local-6989586621679059195"><span class="annot"><span class="annottext">i :: Int
+</span><a href="#local-6989586621679059195"><span class="hs-identifier hs-var">i</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679059194"><span class="annot"><span class="annottext">gen' :: StdGen
+</span><a href="#local-6989586621679059194"><span class="hs-identifier hs-var">gen'</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Int, Int) -&gt; StdGen -&gt; (Int, StdGen)
 forall a g. (Random a, RandomGen g) =&gt; (a, a) -&gt; g -&gt; (a, g)
 </span><span class="hs-identifier hs-var">randomR</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-number">0</span></span><span class="hs-special">,</span><span class="annot"><span class="annottext">[(MCT, Int)] -&gt; Int
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
 </span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="annot"><span class="annottext">[(MCT, Int)]
-</span><a href="#local-6989586621679058894"><span class="hs-identifier hs-var">unvisited</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+</span><a href="#local-6989586621679059196"><span class="hs-identifier hs-var">unvisited</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
 forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-glyph hs-var">-</span></span><span> </span><span class="annot"><span class="hs-number">1</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">StdGen
-</span><a href="#local-6989586621679058898"><span class="hs-identifier hs-var">gen</span></a></span><span>
-</span><span id="line-69"></span><span>        </span><span id="local-6989586621679058889"><span class="annot"><span class="annottext">player :: Player
-</span><a href="#local-6989586621679058889"><span class="hs-identifier hs-var hs-var">player</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Position -&gt; Player
+</span><a href="#local-6989586621679059200"><span class="hs-identifier hs-var">gen</span></a></span><span>
+</span><span id="line-69"></span><span>        </span><span id="local-6989586621679059191"><span class="annot"><span class="annottext">player :: Player
+</span><a href="#local-6989586621679059191"><span class="hs-identifier hs-var hs-var">player</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Position -&gt; Player
 </span><a href="GameLogics.html#turn"><span class="hs-identifier hs-var hs-var">turn</span></a></span><span> </span><span class="annot"><span class="annottext">(Position -&gt; Player) -&gt; Position -&gt; Player
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">MCT -&gt; Position
 </span><a href="MCTS.html#pos"><span class="hs-identifier hs-var hs-var">pos</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058897"><span class="hs-identifier hs-var">m</span></a></span><span>
-</span><span id="line-70"></span><span>        </span><span id="local-6989586621679058887"><span class="annot"><span class="annottext">nBig :: Double
-</span><a href="#local-6989586621679058887"><span class="hs-identifier hs-var hs-var">nBig</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Double
+</span><a href="#local-6989586621679059199"><span class="hs-identifier hs-var">m</span></a></span><span>
+</span><span id="line-70"></span><span>        </span><span id="local-6989586621679059189"><span class="annot"><span class="annottext">nBig :: Double
+</span><a href="#local-6989586621679059189"><span class="hs-identifier hs-var hs-var">nBig</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Double
 forall a b. (Integral a, Num b) =&gt; a -&gt; b
 </span><span class="hs-identifier hs-var">fromIntegral</span></span><span> </span><span class="annot"><span class="annottext">(Int -&gt; Double) -&gt; Int -&gt; Double
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">MCT -&gt; Int
 </span><a href="MCTS.html#totalPlays"><span class="hs-identifier hs-var hs-var">totalPlays</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058897"><span class="hs-identifier hs-var">m</span></a></span><span>
-</span><span id="line-71"></span><span>        </span><span id="local-6989586621679058886"><span class="annot"><span class="annottext">ucbs :: [Double]
-</span><a href="#local-6989586621679058886"><span class="hs-identifier hs-var hs-var">ucbs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(MCT -&gt; Double) -&gt; [MCT] -&gt; [Double]
+</span><a href="#local-6989586621679059199"><span class="hs-identifier hs-var">m</span></a></span><span>
+</span><span id="line-71"></span><span>        </span><span id="local-6989586621679059188"><span class="annot"><span class="annottext">ucbs :: [Double]
+</span><a href="#local-6989586621679059188"><span class="hs-identifier hs-var hs-var">ucbs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(MCT -&gt; Double) -&gt; [MCT] -&gt; [Double]
 forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
 </span><span class="hs-identifier hs-var">map</span></span><span> </span><span class="annot"><span class="annottext">MCT -&gt; Double
-</span><a href="#local-6989586621679058885"><span class="hs-identifier hs-var">ucb</span></a></span><span> </span><span class="annot"><span class="annottext">[MCT]
-</span><a href="#local-6989586621679058890"><span class="hs-identifier hs-var">chld</span></a></span><span>
-</span><span id="line-72"></span><span>        </span><span id="local-6989586621679058891"><span class="annot"><span class="annottext">best :: Int
-</span><a href="#local-6989586621679058891"><span class="hs-identifier hs-var hs-var">best</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Double, Int) -&gt; Int
+</span><a href="#local-6989586621679059187"><span class="hs-identifier hs-var">ucb</span></a></span><span> </span><span class="annot"><span class="annottext">[MCT]
+</span><a href="#local-6989586621679059192"><span class="hs-identifier hs-var">chld</span></a></span><span>
+</span><span id="line-72"></span><span>        </span><span id="local-6989586621679059193"><span class="annot"><span class="annottext">best :: Int
+</span><a href="#local-6989586621679059193"><span class="hs-identifier hs-var hs-var">best</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Double, Int) -&gt; Int
 forall a b. (a, b) -&gt; b
 </span><span class="hs-identifier hs-var">snd</span></span><span> </span><span class="annot"><span class="annottext">((Double, Int) -&gt; Int) -&gt; (Double, Int) -&gt; Int
 forall a b. (a -&gt; b) -&gt; a -&gt; b
@@ -340,143 +340,143 @@ forall a b. (a, b) -&gt; a
 </span><span class="hs-identifier hs-var">fst</span></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Double] -&gt; [Int] -&gt; [(Double, Int)]
 forall a b. [a] -&gt; [b] -&gt; [(a, b)]
 </span><span class="hs-identifier hs-var">zip</span></span><span> </span><span class="annot"><span class="annottext">[Double]
-</span><a href="#local-6989586621679058886"><span class="hs-identifier hs-var">ucbs</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-number">0</span></span><span class="hs-glyph">..</span><span class="hs-special">]</span><span class="hs-special">)</span><span>
-</span><span id="line-73"></span><span>        </span><span class="annot"><a href="#local-6989586621679058885"><span class="hs-identifier hs-type">ucb</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="MCTS.html#MCT"><span class="hs-identifier hs-type">MCT</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Double</span></span><span>
-</span><span id="line-74"></span><span>        </span><span id="local-6989586621679058885"><span class="annot"><span class="annottext">ucb :: MCT -&gt; Double
-</span><a href="#local-6989586621679058885"><span class="hs-identifier hs-var hs-var">ucb</span></a></span></span><span> </span><span id="local-6989586621679058882"><span class="annot"><span class="annottext">mc :: MCT
-</span><a href="#local-6989586621679058882"><span class="hs-identifier hs-var">mc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Double
-</span><a href="#local-6989586621679058881"><span class="hs-identifier hs-var">w</span></a></span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
+</span><a href="#local-6989586621679059188"><span class="hs-identifier hs-var">ucbs</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-number">0</span></span><span class="hs-glyph">..</span><span class="hs-special">]</span><span class="hs-special">)</span><span>
+</span><span id="line-73"></span><span>        </span><span class="annot"><a href="#local-6989586621679059187"><span class="hs-identifier hs-type">ucb</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="MCTS.html#MCT"><span class="hs-identifier hs-type">MCT</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Double</span></span><span>
+</span><span id="line-74"></span><span>        </span><span id="local-6989586621679059187"><span class="annot"><span class="annottext">ucb :: MCT -&gt; Double
+</span><a href="#local-6989586621679059187"><span class="hs-identifier hs-var hs-var">ucb</span></a></span></span><span> </span><span id="local-6989586621679059184"><span class="annot"><span class="annottext">mc :: MCT
+</span><a href="#local-6989586621679059184"><span class="hs-identifier hs-var">mc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Double
+</span><a href="#local-6989586621679059183"><span class="hs-identifier hs-var">w</span></a></span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
 forall a. Fractional a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">/</span></span><span> </span><span class="annot"><span class="annottext">Double
-</span><a href="#local-6989586621679058879"><span class="hs-identifier hs-var">nSmall</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
+</span><a href="#local-6989586621679059181"><span class="hs-identifier hs-var">nSmall</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
 forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">+</span></span><span> </span><span class="annot"><span class="annottext">Double
-</span><a href="#local-6989586621679058878"><span class="hs-identifier hs-var">c</span></a></span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
+</span><a href="#local-6989586621679059180"><span class="hs-identifier hs-var">c</span></a></span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
 forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">*</span></span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double
 forall a. Floating a =&gt; a -&gt; a
 </span><span class="hs-identifier hs-var">sqrt</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Double -&gt; Double
 forall a. Floating a =&gt; a -&gt; a
 </span><span class="hs-identifier hs-var">log</span></span><span> </span><span class="annot"><span class="annottext">Double
-</span><a href="#local-6989586621679058887"><span class="hs-identifier hs-var">nBig</span></a></span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
+</span><a href="#local-6989586621679059189"><span class="hs-identifier hs-var">nBig</span></a></span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
 forall a. Fractional a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">/</span></span><span> </span><span class="annot"><span class="annottext">Double
-</span><a href="#local-6989586621679058879"><span class="hs-identifier hs-var">nSmall</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679059181"><span class="hs-identifier hs-var">nSmall</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-75"></span><span>            </span><span class="hs-keyword">where</span><span>
-</span><span id="line-76"></span><span>                </span><span id="local-6989586621679058881"><span class="annot"><span class="annottext">w :: Double
-</span><a href="#local-6989586621679058881"><span class="hs-identifier hs-var hs-var">w</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Double
+</span><span id="line-76"></span><span>                </span><span id="local-6989586621679059183"><span class="annot"><span class="annottext">w :: Double
+</span><a href="#local-6989586621679059183"><span class="hs-identifier hs-var hs-var">w</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Double
 forall a b. (Integral a, Num b) =&gt; a -&gt; b
 </span><span class="hs-identifier hs-var">fromIntegral</span></span><span> </span><span class="annot"><span class="annottext">(Int -&gt; Double) -&gt; Int -&gt; Double
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">Player
-</span><a href="#local-6989586621679058889"><span class="hs-identifier hs-var">player</span></a></span><span> </span><span class="annot"><span class="annottext">Player -&gt; Player -&gt; Bool
+</span><a href="#local-6989586621679059191"><span class="hs-identifier hs-var">player</span></a></span><span> </span><span class="annot"><span class="annottext">Player -&gt; Player -&gt; Bool
 forall a. Eq a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">==</span></span><span> </span><span class="annot"><span class="annottext">Player
 </span><a href="GameLogics.html#R"><span class="hs-identifier hs-var">R</span></a></span><span> </span><span class="hs-keyword">then</span><span> </span><span class="annot"><span class="annottext">MCT -&gt; Int
 </span><a href="MCTS.html#rWins"><span class="hs-identifier hs-var hs-var">rWins</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058882"><span class="hs-identifier hs-var">mc</span></a></span><span> </span><span class="hs-keyword">else</span><span> </span><span class="annot"><span class="annottext">MCT -&gt; Int
+</span><a href="#local-6989586621679059184"><span class="hs-identifier hs-var">mc</span></a></span><span> </span><span class="hs-keyword">else</span><span> </span><span class="annot"><span class="annottext">MCT -&gt; Int
 </span><a href="MCTS.html#yWins"><span class="hs-identifier hs-var hs-var">yWins</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058882"><span class="hs-identifier hs-var">mc</span></a></span><span>
-</span><span id="line-77"></span><span>                </span><span id="local-6989586621679058879"><span class="annot"><span class="annottext">nSmall :: Double
-</span><a href="#local-6989586621679058879"><span class="hs-identifier hs-var hs-var">nSmall</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Double
+</span><a href="#local-6989586621679059184"><span class="hs-identifier hs-var">mc</span></a></span><span>
+</span><span id="line-77"></span><span>                </span><span id="local-6989586621679059181"><span class="annot"><span class="annottext">nSmall :: Double
+</span><a href="#local-6989586621679059181"><span class="hs-identifier hs-var hs-var">nSmall</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Double
 forall a b. (Integral a, Num b) =&gt; a -&gt; b
 </span><span class="hs-identifier hs-var">fromIntegral</span></span><span> </span><span class="annot"><span class="annottext">(Int -&gt; Double) -&gt; Int -&gt; Double
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">MCT -&gt; Int
 </span><a href="MCTS.html#totalPlays"><span class="hs-identifier hs-var hs-var">totalPlays</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058882"><span class="hs-identifier hs-var">mc</span></a></span><span>
-</span><span id="line-78"></span><span>                </span><span id="local-6989586621679058878"><span class="annot"><span class="annottext">c :: Double
-</span><a href="#local-6989586621679058878"><span class="hs-identifier hs-var hs-var">c</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="hs-number">1.414213</span></span><span>
+</span><a href="#local-6989586621679059184"><span class="hs-identifier hs-var">mc</span></a></span><span>
+</span><span id="line-78"></span><span>                </span><span id="local-6989586621679059180"><span class="annot"><span class="annottext">c :: Double
+</span><a href="#local-6989586621679059180"><span class="hs-identifier hs-var hs-var">c</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="hs-number">1.414213</span></span><span>
 </span><span id="line-79"></span><span>
-</span><span id="line-80"></span><span id="local-6989586621679058987"><span class="annot"><a href="MCTS.html#extract"><span class="hs-identifier hs-type">extract</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="#local-6989586621679058987"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="#local-6989586621679058987"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">,</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="#local-6989586621679058987"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">]</span><span class="hs-special">)</span></span><span>
+</span><span id="line-80"></span><span id="local-6989586621679059289"><span class="annot"><a href="MCTS.html#extract"><span class="hs-identifier hs-type">extract</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="#local-6989586621679059289"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="#local-6989586621679059289"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">,</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="#local-6989586621679059289"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">]</span><span class="hs-special">)</span></span><span>
 </span><span id="line-81"></span><span id="extract"><span class="annot"><span class="annottext">extract :: Int -&gt; [a] -&gt; (a, [a])
-</span><a href="MCTS.html#extract"><span class="hs-identifier hs-var hs-var">extract</span></a></span></span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679058874"><span class="annot"><span class="annottext">x :: a
-</span><a href="#local-6989586621679058874"><span class="hs-identifier hs-var">x</span></a></span></span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span id="local-6989586621679058873"><span class="annot"><span class="annottext">xs :: [a]
-</span><a href="#local-6989586621679058873"><span class="hs-identifier hs-var">xs</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679058874"><span class="hs-identifier hs-var">x</span></a></span><span class="hs-special">,</span><span class="annot"><span class="annottext">[a]
-</span><a href="#local-6989586621679058873"><span class="hs-identifier hs-var">xs</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-82"></span><span class="annot"><a href="MCTS.html#extract"><span class="hs-identifier hs-var">extract</span></a></span><span> </span><span id="local-6989586621679058872"><span class="annot"><span class="annottext">n :: Int
-</span><a href="#local-6989586621679058872"><span class="hs-identifier hs-var">n</span></a></span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679058871"><span class="annot"><span class="annottext">x :: a
-</span><a href="#local-6989586621679058871"><span class="hs-identifier hs-var">x</span></a></span></span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span id="local-6989586621679058870"><span class="annot"><span class="annottext">xs :: [a]
-</span><a href="#local-6989586621679058870"><span class="hs-identifier hs-var">xs</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679058869"><span class="hs-identifier hs-var">y</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679058871"><span class="hs-identifier hs-var">x</span></a></span><span class="annot"><span class="annottext">a -&gt; [a] -&gt; [a]
+</span><a href="MCTS.html#extract"><span class="hs-identifier hs-var hs-var">extract</span></a></span></span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679059176"><span class="annot"><span class="annottext">x :: a
+</span><a href="#local-6989586621679059176"><span class="hs-identifier hs-var">x</span></a></span></span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span id="local-6989586621679059175"><span class="annot"><span class="annottext">xs :: [a]
+</span><a href="#local-6989586621679059175"><span class="hs-identifier hs-var">xs</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679059176"><span class="hs-identifier hs-var">x</span></a></span><span class="hs-special">,</span><span class="annot"><span class="annottext">[a]
+</span><a href="#local-6989586621679059175"><span class="hs-identifier hs-var">xs</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-82"></span><span class="annot"><a href="MCTS.html#extract"><span class="hs-identifier hs-var">extract</span></a></span><span> </span><span id="local-6989586621679059174"><span class="annot"><span class="annottext">n :: Int
+</span><a href="#local-6989586621679059174"><span class="hs-identifier hs-var">n</span></a></span></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679059173"><span class="annot"><span class="annottext">x :: a
+</span><a href="#local-6989586621679059173"><span class="hs-identifier hs-var">x</span></a></span></span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span id="local-6989586621679059172"><span class="annot"><span class="annottext">xs :: [a]
+</span><a href="#local-6989586621679059172"><span class="hs-identifier hs-var">xs</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679059171"><span class="hs-identifier hs-var">y</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679059173"><span class="hs-identifier hs-var">x</span></a></span><span class="annot"><span class="annottext">a -&gt; [a] -&gt; [a]
 forall a. a -&gt; [a] -&gt; [a]
 </span><span class="hs-glyph hs-var">:</span></span><span class="annot"><span class="annottext">[a]
-</span><a href="#local-6989586621679058868"><span class="hs-identifier hs-var">ys</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-83"></span><span>  </span><span class="hs-keyword">where</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679058869"><span class="annot"><span class="annottext">y :: a
-</span><a href="#local-6989586621679058869"><span class="hs-identifier hs-var">y</span></a></span></span><span class="hs-special">,</span><span id="local-6989586621679058868"><span class="annot"><span class="annottext">ys :: [a]
-</span><a href="#local-6989586621679058868"><span class="hs-identifier hs-var">ys</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; [a] -&gt; (a, [a])
+</span><a href="#local-6989586621679059170"><span class="hs-identifier hs-var">ys</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-83"></span><span>  </span><span class="hs-keyword">where</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679059171"><span class="annot"><span class="annottext">y :: a
+</span><a href="#local-6989586621679059171"><span class="hs-identifier hs-var">y</span></a></span></span><span class="hs-special">,</span><span id="local-6989586621679059170"><span class="annot"><span class="annottext">ys :: [a]
+</span><a href="#local-6989586621679059170"><span class="hs-identifier hs-var">ys</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; [a] -&gt; (a, [a])
 forall a. Int -&gt; [a] -&gt; (a, [a])
 </span><a href="MCTS.html#extract"><span class="hs-identifier hs-var">extract</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679058872"><span class="hs-identifier hs-var">n</span></a></span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+</span><a href="#local-6989586621679059174"><span class="hs-identifier hs-var">n</span></a></span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
 forall a. Num a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-glyph hs-var">-</span></span><span class="annot"><span class="hs-number">1</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[a]
-</span><a href="#local-6989586621679058870"><span class="hs-identifier hs-var">xs</span></a></span><span>
+</span><a href="#local-6989586621679059172"><span class="hs-identifier hs-var">xs</span></a></span><span>
 </span><span id="line-84"></span><span>
 </span><span id="line-85"></span><span class="annot"><a href="MCTS.html#bestChild"><span class="hs-identifier hs-type">bestChild</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="MCTS.html#MCT"><span class="hs-identifier hs-type">MCT</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MCTS.html#MCT"><span class="hs-identifier hs-type">MCT</span></a></span><span>
 </span><span id="line-86"></span><span id="bestChild"><span class="annot"><span class="annottext">bestChild :: MCT -&gt; MCT
-</span><a href="MCTS.html#bestChild"><span class="hs-identifier hs-var hs-var">bestChild</span></a></span></span><span> </span><span id="local-6989586621679058866"><span class="annot"><span class="annottext">m :: MCT
-</span><a href="#local-6989586621679058866"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(MCT -&gt; MCT -&gt; Ordering) -&gt; [MCT] -&gt; MCT
+</span><a href="MCTS.html#bestChild"><span class="hs-identifier hs-var hs-var">bestChild</span></a></span></span><span> </span><span id="local-6989586621679059168"><span class="annot"><span class="annottext">m :: MCT
+</span><a href="#local-6989586621679059168"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(MCT -&gt; MCT -&gt; Ordering) -&gt; [MCT] -&gt; MCT
 forall (t :: * -&gt; *) a.
 Foldable t =&gt;
 (a -&gt; a -&gt; Ordering) -&gt; t a -&gt; a
 </span><span class="hs-identifier hs-var">maximumBy</span></span><span> </span><span class="annot"><span class="annottext">MCT -&gt; MCT -&gt; Ordering
-</span><a href="#local-6989586621679058865"><span class="hs-identifier hs-var">cmpMCT</span></a></span><span> </span><span class="annot"><span class="annottext">([MCT] -&gt; MCT) -&gt; [MCT] -&gt; MCT
+</span><a href="#local-6989586621679059167"><span class="hs-identifier hs-var">cmpMCT</span></a></span><span> </span><span class="annot"><span class="annottext">([MCT] -&gt; MCT) -&gt; [MCT] -&gt; MCT
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">MCT -&gt; [MCT]
 </span><a href="MCTS.html#children"><span class="hs-identifier hs-var hs-var">children</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058866"><span class="hs-identifier hs-var">m</span></a></span><span>
+</span><a href="#local-6989586621679059168"><span class="hs-identifier hs-var">m</span></a></span><span>
 </span><span id="line-87"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-88"></span><span>        </span><span id="local-6989586621679058864"><span class="annot"><span class="annottext">player :: Player
-</span><a href="#local-6989586621679058864"><span class="hs-identifier hs-var hs-var">player</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Position -&gt; Player
+</span><span id="line-88"></span><span>        </span><span id="local-6989586621679059166"><span class="annot"><span class="annottext">player :: Player
+</span><a href="#local-6989586621679059166"><span class="hs-identifier hs-var hs-var">player</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Position -&gt; Player
 </span><a href="GameLogics.html#turn"><span class="hs-identifier hs-var hs-var">turn</span></a></span><span> </span><span class="annot"><span class="annottext">(Position -&gt; Player) -&gt; Position -&gt; Player
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">MCT -&gt; Position
 </span><a href="MCTS.html#pos"><span class="hs-identifier hs-var hs-var">pos</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058866"><span class="hs-identifier hs-var">m</span></a></span><span>
-</span><span id="line-89"></span><span>        </span><span class="annot"><a href="#local-6989586621679058863"><span class="hs-identifier hs-type">winrate</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="MCTS.html#MCT"><span class="hs-identifier hs-type">MCT</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Double</span></span><span>
-</span><span id="line-90"></span><span>        </span><span id="local-6989586621679058863"><span class="annot"><span class="annottext">winrate :: MCT -&gt; Double
-</span><a href="#local-6989586621679058863"><span class="hs-identifier hs-var hs-var">winrate</span></a></span></span><span> </span><span id="local-6989586621679058862"><span class="annot"><span class="annottext">mc :: MCT
-</span><a href="#local-6989586621679058862"><span class="hs-identifier hs-var">mc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Double
+</span><a href="#local-6989586621679059168"><span class="hs-identifier hs-var">m</span></a></span><span>
+</span><span id="line-89"></span><span>        </span><span class="annot"><a href="#local-6989586621679059165"><span class="hs-identifier hs-type">winrate</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="MCTS.html#MCT"><span class="hs-identifier hs-type">MCT</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Double</span></span><span>
+</span><span id="line-90"></span><span>        </span><span id="local-6989586621679059165"><span class="annot"><span class="annottext">winrate :: MCT -&gt; Double
+</span><a href="#local-6989586621679059165"><span class="hs-identifier hs-var hs-var">winrate</span></a></span></span><span> </span><span id="local-6989586621679059164"><span class="annot"><span class="annottext">mc :: MCT
+</span><a href="#local-6989586621679059164"><span class="hs-identifier hs-var">mc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Double
 forall a b. (Integral a, Num b) =&gt; a -&gt; b
 </span><span class="hs-identifier hs-var">fromIntegral</span></span><span> </span><span class="hs-special">(</span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">Player
-</span><a href="#local-6989586621679058864"><span class="hs-identifier hs-var">player</span></a></span><span> </span><span class="annot"><span class="annottext">Player -&gt; Player -&gt; Bool
+</span><a href="#local-6989586621679059166"><span class="hs-identifier hs-var">player</span></a></span><span> </span><span class="annot"><span class="annottext">Player -&gt; Player -&gt; Bool
 forall a. Eq a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">==</span></span><span> </span><span class="annot"><span class="annottext">Player
 </span><a href="GameLogics.html#R"><span class="hs-identifier hs-var">R</span></a></span><span> </span><span class="hs-keyword">then</span><span> </span><span class="annot"><span class="annottext">MCT -&gt; Int
 </span><a href="MCTS.html#rWins"><span class="hs-identifier hs-var hs-var">rWins</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058862"><span class="hs-identifier hs-var">mc</span></a></span><span> </span><span class="hs-keyword">else</span><span> </span><span class="annot"><span class="annottext">MCT -&gt; Int
+</span><a href="#local-6989586621679059164"><span class="hs-identifier hs-var">mc</span></a></span><span> </span><span class="hs-keyword">else</span><span> </span><span class="annot"><span class="annottext">MCT -&gt; Int
 </span><a href="MCTS.html#yWins"><span class="hs-identifier hs-var hs-var">yWins</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058862"><span class="hs-identifier hs-var">mc</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
+</span><a href="#local-6989586621679059164"><span class="hs-identifier hs-var">mc</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
 forall a. Fractional a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">/</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Double
 forall a b. (Integral a, Num b) =&gt; a -&gt; b
 </span><span class="hs-identifier hs-var">fromIntegral</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Int
 </span><a href="MCTS.html#totalPlays"><span class="hs-identifier hs-var hs-var">totalPlays</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058862"><span class="hs-identifier hs-var">mc</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-91"></span><span>        </span><span class="annot"><a href="#local-6989586621679058865"><span class="hs-identifier hs-type">cmpMCT</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="MCTS.html#MCT"><span class="hs-identifier hs-type">MCT</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MCTS.html#MCT"><span class="hs-identifier hs-type">MCT</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Ordering</span></span><span>
-</span><span id="line-92"></span><span>        </span><span id="local-6989586621679058865"><span class="annot"><span class="annottext">cmpMCT :: MCT -&gt; MCT -&gt; Ordering
-</span><a href="#local-6989586621679058865"><span class="hs-identifier hs-var hs-var">cmpMCT</span></a></span></span><span> </span><span id="local-6989586621679058861"><span class="annot"><span class="annottext">m1 :: MCT
-</span><a href="#local-6989586621679058861"><span class="hs-identifier hs-var">m1</span></a></span></span><span> </span><span id="local-6989586621679058860"><span class="annot"><span class="annottext">m2 :: MCT
-</span><a href="#local-6989586621679058860"><span class="hs-identifier hs-var">m2</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Ordering
+</span><a href="#local-6989586621679059164"><span class="hs-identifier hs-var">mc</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-91"></span><span>        </span><span class="annot"><a href="#local-6989586621679059167"><span class="hs-identifier hs-type">cmpMCT</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="MCTS.html#MCT"><span class="hs-identifier hs-type">MCT</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MCTS.html#MCT"><span class="hs-identifier hs-type">MCT</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Ordering</span></span><span>
+</span><span id="line-92"></span><span>        </span><span id="local-6989586621679059167"><span class="annot"><span class="annottext">cmpMCT :: MCT -&gt; MCT -&gt; Ordering
+</span><a href="#local-6989586621679059167"><span class="hs-identifier hs-var hs-var">cmpMCT</span></a></span></span><span> </span><span id="local-6989586621679059163"><span class="annot"><span class="annottext">m1 :: MCT
+</span><a href="#local-6989586621679059163"><span class="hs-identifier hs-var">m1</span></a></span></span><span> </span><span id="local-6989586621679059162"><span class="annot"><span class="annottext">m2 :: MCT
+</span><a href="#local-6989586621679059162"><span class="hs-identifier hs-var">m2</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Ordering
 forall a. Ord a =&gt; a -&gt; a -&gt; Ordering
 </span><span class="hs-identifier hs-var">compare</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Double
-</span><a href="#local-6989586621679058863"><span class="hs-identifier hs-var">winrate</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058861"><span class="hs-identifier hs-var">m1</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Double
-</span><a href="#local-6989586621679058863"><span class="hs-identifier hs-var">winrate</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058860"><span class="hs-identifier hs-var">m2</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679059165"><span class="hs-identifier hs-var">winrate</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
+</span><a href="#local-6989586621679059163"><span class="hs-identifier hs-var">m1</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Double
+</span><a href="#local-6989586621679059165"><span class="hs-identifier hs-var">winrate</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
+</span><a href="#local-6989586621679059162"><span class="hs-identifier hs-var">m2</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-93"></span><span>
 </span><span id="line-94"></span><span class="annot"><a href="MCTS.html#getBestMove"><span class="hs-identifier hs-type">getBestMove</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="MCTS.html#MCT"><span class="hs-identifier hs-type">MCT</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
 </span><span id="line-95"></span><span id="getBestMove"><span class="annot"><span class="annottext">getBestMove :: MCT -&gt; Int
-</span><a href="MCTS.html#getBestMove"><span class="hs-identifier hs-var hs-var">getBestMove</span></a></span></span><span> </span><span id="local-6989586621679058857"><span class="annot"><span class="annottext">m :: MCT
-</span><a href="#local-6989586621679058857"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Maybe Int -&gt; Int
+</span><a href="MCTS.html#getBestMove"><span class="hs-identifier hs-var hs-var">getBestMove</span></a></span></span><span> </span><span id="local-6989586621679059159"><span class="annot"><span class="annottext">m :: MCT
+</span><a href="#local-6989586621679059159"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Maybe Int -&gt; Int
 forall a. a -&gt; Maybe a -&gt; a
 </span><span class="hs-identifier hs-var">fromMaybe</span></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">-</span><span class="annot"><span class="hs-number">1</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679058856"><span class="hs-identifier hs-var">t</span></a></span><span>
+</span><a href="#local-6989586621679059158"><span class="hs-identifier hs-var">t</span></a></span><span>
 </span><span id="line-96"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-97"></span><span>        </span><span id="local-6989586621679058855"><span class="annot"><span class="annottext">bb :: Board
-</span><a href="#local-6989586621679058855"><span class="hs-identifier hs-var hs-var">bb</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Position -&gt; Board
+</span><span id="line-97"></span><span>        </span><span id="local-6989586621679059157"><span class="annot"><span class="annottext">bb :: Board
+</span><a href="#local-6989586621679059157"><span class="hs-identifier hs-var hs-var">bb</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Position -&gt; Board
 </span><a href="GameLogics.html#board"><span class="hs-identifier hs-var hs-var">board</span></a></span><span> </span><span class="annot"><span class="annottext">(Position -&gt; Board) -&gt; Position -&gt; Board
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">MCT -&gt; Position
@@ -484,16 +484,16 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">MCT -&gt; MCT
 </span><a href="MCTS.html#bestChild"><span class="hs-identifier hs-var">bestChild</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058857"><span class="hs-identifier hs-var">m</span></a></span><span>
-</span><span id="line-98"></span><span>        </span><span id="local-6989586621679058854"><span class="annot"><span class="annottext">cb :: Board
-</span><a href="#local-6989586621679058854"><span class="hs-identifier hs-var hs-var">cb</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Position -&gt; Board
+</span><a href="#local-6989586621679059159"><span class="hs-identifier hs-var">m</span></a></span><span>
+</span><span id="line-98"></span><span>        </span><span id="local-6989586621679059156"><span class="annot"><span class="annottext">cb :: Board
+</span><a href="#local-6989586621679059156"><span class="hs-identifier hs-var hs-var">cb</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Position -&gt; Board
 </span><a href="GameLogics.html#board"><span class="hs-identifier hs-var hs-var">board</span></a></span><span> </span><span class="annot"><span class="annottext">(Position -&gt; Board) -&gt; Position -&gt; Board
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">MCT -&gt; Position
 </span><a href="MCTS.html#pos"><span class="hs-identifier hs-var hs-var">pos</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058857"><span class="hs-identifier hs-var">m</span></a></span><span>
-</span><span id="line-99"></span><span>        </span><span id="local-6989586621679058856"><span class="annot"><span class="annottext">t :: Maybe Int
-</span><a href="#local-6989586621679058856"><span class="hs-identifier hs-var hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool -&gt; [Bool] -&gt; Maybe Int
+</span><a href="#local-6989586621679059159"><span class="hs-identifier hs-var">m</span></a></span><span>
+</span><span id="line-99"></span><span>        </span><span id="local-6989586621679059158"><span class="annot"><span class="annottext">t :: Maybe Int
+</span><a href="#local-6989586621679059158"><span class="hs-identifier hs-var hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool -&gt; [Bool] -&gt; Maybe Int
 forall a. Eq a =&gt; a -&gt; [a] -&gt; Maybe Int
 </span><span class="hs-identifier hs-var">elemIndex</span></span><span> </span><span class="annot"><span class="annottext">Bool
 </span><span class="hs-identifier hs-var">False</span></span><span> </span><span class="annot"><span class="annottext">([Bool] -&gt; Maybe Int) -&gt; [Bool] -&gt; Maybe Int
@@ -503,8 +503,8 @@ forall a b c. (a -&gt; b -&gt; c) -&gt; [a] -&gt; [b] -&gt; [c]
 </span><span class="hs-identifier hs-var">zipWith</span></span><span> </span><span class="annot"><span class="annottext">[Player] -&gt; [Player] -&gt; Bool
 forall a. Eq a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">(==)</span></span><span> </span><span class="annot"><span class="annottext">Board
-</span><a href="#local-6989586621679058855"><span class="hs-identifier hs-var">bb</span></a></span><span> </span><span class="annot"><span class="annottext">Board
-</span><a href="#local-6989586621679058854"><span class="hs-identifier hs-var">cb</span></a></span><span>
+</span><a href="#local-6989586621679059157"><span class="hs-identifier hs-var">bb</span></a></span><span> </span><span class="annot"><span class="annottext">Board
+</span><a href="#local-6989586621679059156"><span class="hs-identifier hs-var">cb</span></a></span><span>
 </span><span id="line-100"></span><span>
 </span><span id="line-101"></span><span class="hs-comment">-- | Main function of the module - evaluates position using Monte Carlo Tree Serach for a given number of milliseconds.</span><span>
 </span><span id="line-102"></span><span class="annot"><a href="MCTS.html#doMCTS"><span class="hs-identifier hs-type">doMCTS</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">StdGen</span></span><span> </span><span class="hs-comment">-- ^ StdGen used for randomness</span><span>
@@ -512,78 +512,78 @@ forall a. Eq a =&gt; a -&gt; a -&gt; Bool
 </span><span id="line-104"></span><span>       </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-comment">-- ^ Number of milliseconds to evaluate for</span><span>
 </span><span id="line-105"></span><span>       </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-type">StdGen</span></span><span class="hs-special">)</span><span> </span><span class="hs-comment">-- ^ (number of column that represents the best found way to put token, StdGen returned from all random actions)</span><span>
 </span><span id="line-106"></span><span id="doMCTS"><span class="annot"><span class="annottext">doMCTS :: StdGen -&gt; Position -&gt; Int -&gt; IO (Int, StdGen)
-</span><a href="MCTS.html#doMCTS"><span class="hs-identifier hs-var hs-var">doMCTS</span></a></span></span><span> </span><span id="local-6989586621679058851"><span class="annot"><span class="annottext">gen :: StdGen
-</span><a href="#local-6989586621679058851"><span class="hs-identifier hs-var">gen</span></a></span></span><span> </span><span id="local-6989586621679058850"><span class="annot"><span class="annottext">p :: Position
-</span><a href="#local-6989586621679058850"><span class="hs-identifier hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679058849"><span class="annot"><span class="annottext">ms :: Int
-</span><a href="#local-6989586621679058849"><span class="hs-identifier hs-var">ms</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-107"></span><span>    </span><span id="local-6989586621679058848"><span class="annot"><span class="annottext">UTCTime
-</span><a href="#local-6989586621679058848"><span class="hs-identifier hs-var">currentTimestamp</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO UTCTime
+</span><a href="MCTS.html#doMCTS"><span class="hs-identifier hs-var hs-var">doMCTS</span></a></span></span><span> </span><span id="local-6989586621679059153"><span class="annot"><span class="annottext">gen :: StdGen
+</span><a href="#local-6989586621679059153"><span class="hs-identifier hs-var">gen</span></a></span></span><span> </span><span id="local-6989586621679059152"><span class="annot"><span class="annottext">p :: Position
+</span><a href="#local-6989586621679059152"><span class="hs-identifier hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679059151"><span class="annot"><span class="annottext">ms :: Int
+</span><a href="#local-6989586621679059151"><span class="hs-identifier hs-var">ms</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-107"></span><span>    </span><span id="local-6989586621679059150"><span class="annot"><span class="annottext">UTCTime
+</span><a href="#local-6989586621679059150"><span class="hs-identifier hs-var">currentTimestamp</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO UTCTime
 </span><span class="hs-identifier hs-var">getCurrentTime</span></span><span>
-</span><span id="line-108"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679058846"><span class="annot"><span class="annottext">maxTimeStamp :: UTCTime
-</span><a href="#local-6989586621679058846"><span class="hs-identifier hs-var hs-var">maxTimeStamp</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">NominalDiffTime -&gt; UTCTime -&gt; UTCTime
+</span><span id="line-108"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679059148"><span class="annot"><span class="annottext">maxTimeStamp :: UTCTime
+</span><a href="#local-6989586621679059148"><span class="hs-identifier hs-var hs-var">maxTimeStamp</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">NominalDiffTime -&gt; UTCTime -&gt; UTCTime
 </span><span class="hs-identifier hs-var">addUTCTime</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int -&gt; NominalDiffTime
 forall a b. (Integral a, Num b) =&gt; a -&gt; b
 </span><span class="hs-identifier hs-var">fromIntegral</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679058849"><span class="hs-identifier hs-var">ms</span></a></span><span> </span><span class="annot"><span class="annottext">NominalDiffTime -&gt; NominalDiffTime -&gt; NominalDiffTime
+</span><a href="#local-6989586621679059151"><span class="hs-identifier hs-var">ms</span></a></span><span> </span><span class="annot"><span class="annottext">NominalDiffTime -&gt; NominalDiffTime -&gt; NominalDiffTime
 forall a. Fractional a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">/</span></span><span> </span><span class="annot"><span class="hs-number">1000</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">UTCTime
-</span><a href="#local-6989586621679058848"><span class="hs-identifier hs-var">currentTimestamp</span></a></span><span>
-</span><span id="line-109"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679058844"><span class="annot"><span class="annottext">startTree :: MCT
-</span><a href="#local-6989586621679058844"><span class="hs-identifier hs-var hs-var">startTree</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">MCT -&gt; MCT
+</span><a href="#local-6989586621679059150"><span class="hs-identifier hs-var">currentTimestamp</span></a></span><span>
+</span><span id="line-109"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679059146"><span class="annot"><span class="annottext">startTree :: MCT
+</span><a href="#local-6989586621679059146"><span class="hs-identifier hs-var hs-var">startTree</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">MCT -&gt; MCT
 </span><a href="MCTS.html#expandNode"><span class="hs-identifier hs-var">expandNode</span></a></span><span> </span><span class="annot"><span class="annottext">(MCT -&gt; MCT) -&gt; MCT -&gt; MCT
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Position -&gt; MCT
 </span><a href="MCTS.html#newNode"><span class="hs-identifier hs-var">newNode</span></a></span><span> </span><span class="annot"><span class="annottext">Position
-</span><a href="#local-6989586621679058850"><span class="hs-identifier hs-var">p</span></a></span><span>
-</span><span id="line-110"></span><span>    </span><span class="hs-special">(</span><span id="local-6989586621679058843"><span class="annot"><span class="annottext">endTree :: MCT
-</span><a href="#local-6989586621679058843"><span class="hs-identifier hs-var">endTree</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679058842"><span class="annot"><span class="annottext">gen' :: StdGen
-</span><a href="#local-6989586621679058842"><span class="hs-identifier hs-var">gen'</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">MCT -&gt; UTCTime -&gt; StdGen -&gt; IO (MCT, StdGen)
-</span><a href="#local-6989586621679058841"><span class="hs-identifier hs-var">mctsLoop</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058844"><span class="hs-identifier hs-var">startTree</span></a></span><span> </span><span class="annot"><span class="annottext">UTCTime
-</span><a href="#local-6989586621679058846"><span class="hs-identifier hs-var">maxTimeStamp</span></a></span><span> </span><span class="annot"><span class="annottext">StdGen
-</span><a href="#local-6989586621679058851"><span class="hs-identifier hs-var">gen</span></a></span><span>
+</span><a href="#local-6989586621679059152"><span class="hs-identifier hs-var">p</span></a></span><span>
+</span><span id="line-110"></span><span>    </span><span class="hs-special">(</span><span id="local-6989586621679059145"><span class="annot"><span class="annottext">endTree :: MCT
+</span><a href="#local-6989586621679059145"><span class="hs-identifier hs-var">endTree</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679059144"><span class="annot"><span class="annottext">gen' :: StdGen
+</span><a href="#local-6989586621679059144"><span class="hs-identifier hs-var">gen'</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">MCT -&gt; UTCTime -&gt; StdGen -&gt; IO (MCT, StdGen)
+</span><a href="#local-6989586621679059143"><span class="hs-identifier hs-var">mctsLoop</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
+</span><a href="#local-6989586621679059146"><span class="hs-identifier hs-var">startTree</span></a></span><span> </span><span class="annot"><span class="annottext">UTCTime
+</span><a href="#local-6989586621679059148"><span class="hs-identifier hs-var">maxTimeStamp</span></a></span><span> </span><span class="annot"><span class="annottext">StdGen
+</span><a href="#local-6989586621679059153"><span class="hs-identifier hs-var">gen</span></a></span><span>
 </span><span id="line-111"></span><span>    </span><span class="annot"><span class="annottext">(Int, StdGen) -&gt; IO (Int, StdGen)
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; Int
 </span><a href="MCTS.html#getBestMove"><span class="hs-identifier hs-var">getBestMove</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058843"><span class="hs-identifier hs-var">endTree</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">StdGen
-</span><a href="#local-6989586621679058842"><span class="hs-identifier hs-var">gen'</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679059145"><span class="hs-identifier hs-var">endTree</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">StdGen
+</span><a href="#local-6989586621679059144"><span class="hs-identifier hs-var">gen'</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-112"></span><span>    </span><span class="hs-keyword">where</span><span>
-</span><span id="line-113"></span><span>      </span><span id="local-6989586621679058841"><span class="annot"><span class="annottext">mctsLoop :: MCT -&gt; UTCTime -&gt; StdGen -&gt; IO (MCT, StdGen)
-</span><a href="#local-6989586621679058841"><span class="hs-identifier hs-var hs-var">mctsLoop</span></a></span></span><span> </span><span id="local-6989586621679058840"><span class="annot"><span class="annottext">m :: MCT
-</span><a href="#local-6989586621679058840"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span id="local-6989586621679058839"><span class="annot"><span class="annottext">maxTimeStamp :: UTCTime
-</span><a href="#local-6989586621679058839"><span class="hs-identifier hs-var">maxTimeStamp</span></a></span></span><span> </span><span id="local-6989586621679058838"><span class="annot"><span class="annottext">g :: StdGen
-</span><a href="#local-6989586621679058838"><span class="hs-identifier hs-var">g</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-114"></span><span>                  </span><span id="local-6989586621679058837"><span class="annot"><span class="annottext">UTCTime
-</span><a href="#local-6989586621679058837"><span class="hs-identifier hs-var">currentTimestamp</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO UTCTime
+</span><span id="line-113"></span><span>      </span><span id="local-6989586621679059143"><span class="annot"><span class="annottext">mctsLoop :: MCT -&gt; UTCTime -&gt; StdGen -&gt; IO (MCT, StdGen)
+</span><a href="#local-6989586621679059143"><span class="hs-identifier hs-var hs-var">mctsLoop</span></a></span></span><span> </span><span id="local-6989586621679059142"><span class="annot"><span class="annottext">m :: MCT
+</span><a href="#local-6989586621679059142"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span id="local-6989586621679059141"><span class="annot"><span class="annottext">maxTimeStamp :: UTCTime
+</span><a href="#local-6989586621679059141"><span class="hs-identifier hs-var">maxTimeStamp</span></a></span></span><span> </span><span id="local-6989586621679059140"><span class="annot"><span class="annottext">g :: StdGen
+</span><a href="#local-6989586621679059140"><span class="hs-identifier hs-var">g</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-114"></span><span>                  </span><span id="local-6989586621679059139"><span class="annot"><span class="annottext">UTCTime
+</span><a href="#local-6989586621679059139"><span class="hs-identifier hs-var">currentTimestamp</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO UTCTime
 </span><span class="hs-identifier hs-var">getCurrentTime</span></span><span>
 </span><span id="line-115"></span><span>                  </span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">UTCTime
-</span><a href="#local-6989586621679058837"><span class="hs-identifier hs-var">currentTimestamp</span></a></span><span> </span><span class="annot"><span class="annottext">UTCTime -&gt; UTCTime -&gt; Bool
+</span><a href="#local-6989586621679059139"><span class="hs-identifier hs-var">currentTimestamp</span></a></span><span> </span><span class="annot"><span class="annottext">UTCTime -&gt; UTCTime -&gt; Bool
 forall a. Ord a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">&lt;</span></span><span> </span><span class="annot"><span class="annottext">UTCTime
-</span><a href="#local-6989586621679058839"><span class="hs-identifier hs-var">maxTimeStamp</span></a></span><span> </span><span class="hs-keyword">then</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-116"></span><span>                    </span><span class="hs-keyword">let</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679058835"><span class="annot"><span class="annottext">m' :: MCT
-</span><a href="#local-6989586621679058835"><span class="hs-identifier hs-var">m'</span></a></span></span><span class="hs-special">,</span><span> </span><span class="hs-identifier">_</span><span class="hs-special">,</span><span> </span><span id="local-6989586621679058834"><span class="annot"><span class="annottext">gen' :: StdGen
-</span><a href="#local-6989586621679058834"><span class="hs-identifier hs-var">gen'</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">StdGen -&gt; MCT -&gt; (MCT, Result, StdGen)
+</span><a href="#local-6989586621679059141"><span class="hs-identifier hs-var">maxTimeStamp</span></a></span><span> </span><span class="hs-keyword">then</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-116"></span><span>                    </span><span class="hs-keyword">let</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679059137"><span class="annot"><span class="annottext">m' :: MCT
+</span><a href="#local-6989586621679059137"><span class="hs-identifier hs-var">m'</span></a></span></span><span class="hs-special">,</span><span> </span><span class="hs-identifier">_</span><span class="hs-special">,</span><span> </span><span id="local-6989586621679059136"><span class="annot"><span class="annottext">gen' :: StdGen
+</span><a href="#local-6989586621679059136"><span class="hs-identifier hs-var">gen'</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">StdGen -&gt; MCT -&gt; (MCT, Result, StdGen)
 </span><a href="MCTS.html#mcts"><span class="hs-identifier hs-var">mcts</span></a></span><span> </span><span class="annot"><span class="annottext">StdGen
-</span><a href="#local-6989586621679058851"><span class="hs-identifier hs-var">gen</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058840"><span class="hs-identifier hs-var">m</span></a></span><span>
+</span><a href="#local-6989586621679059153"><span class="hs-identifier hs-var">gen</span></a></span><span> </span><span class="annot"><span class="annottext">MCT
+</span><a href="#local-6989586621679059142"><span class="hs-identifier hs-var">m</span></a></span><span>
 </span><span id="line-117"></span><span>                    </span><span class="hs-special">(</span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT -&gt; UTCTime -&gt; StdGen -&gt; IO (MCT, StdGen)
-</span><a href="#local-6989586621679058841"><span class="hs-identifier hs-var">mctsLoop</span></a></span><span> </span><span class="annot"><span class="annottext">(MCT -&gt; UTCTime -&gt; StdGen -&gt; IO (MCT, StdGen))
+</span><a href="#local-6989586621679059143"><span class="hs-identifier hs-var">mctsLoop</span></a></span><span> </span><span class="annot"><span class="annottext">(MCT -&gt; UTCTime -&gt; StdGen -&gt; IO (MCT, StdGen))
 -&gt; MCT -&gt; UTCTime -&gt; StdGen -&gt; IO (MCT, StdGen)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$!</span></span><span> </span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058835"><span class="hs-identifier hs-var">m'</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">(UTCTime -&gt; StdGen -&gt; IO (MCT, StdGen))
+</span><a href="#local-6989586621679059137"><span class="hs-identifier hs-var">m'</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">(UTCTime -&gt; StdGen -&gt; IO (MCT, StdGen))
 -&gt; UTCTime -&gt; StdGen -&gt; IO (MCT, StdGen)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$!</span></span><span> </span><span class="annot"><span class="annottext">UTCTime
-</span><a href="#local-6989586621679058839"><span class="hs-identifier hs-var">maxTimeStamp</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">(StdGen -&gt; IO (MCT, StdGen)) -&gt; StdGen -&gt; IO (MCT, StdGen)
+</span><a href="#local-6989586621679059141"><span class="hs-identifier hs-var">maxTimeStamp</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">(StdGen -&gt; IO (MCT, StdGen)) -&gt; StdGen -&gt; IO (MCT, StdGen)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$!</span></span><span> </span><span class="annot"><span class="annottext">StdGen
-</span><a href="#local-6989586621679058834"><span class="hs-identifier hs-var">gen'</span></a></span><span>
+</span><a href="#local-6989586621679059136"><span class="hs-identifier hs-var">gen'</span></a></span><span>
 </span><span id="line-118"></span><span>                  </span><span class="hs-keyword">else</span><span>
 </span><span id="line-119"></span><span>                    </span><span class="annot"><span class="annottext">(MCT, StdGen) -&gt; IO (MCT, StdGen)
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">MCT
-</span><a href="#local-6989586621679058840"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">StdGen
-</span><a href="#local-6989586621679058838"><span class="hs-identifier hs-var">g</span></a></span><span class="hs-special">)</span></pre></body></html>
+</span><a href="#local-6989586621679059142"><span class="hs-identifier hs-var">m</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">StdGen
+</span><a href="#local-6989586621679059140"><span class="hs-identifier hs-var">g</span></a></span><span class="hs-special">)</span></pre></body></html>

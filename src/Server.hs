@@ -56,6 +56,8 @@ runServer port = do
 serverLoop :: Chan Msg -> (Player -> Handle) -> GameState ()
 serverLoop chan h4p = do
     pos <- get
+    lift $ putStrLn "Current position:"
+    lift $ print pos
     case evaluatePosition pos of
         Win R -> lift $ tellWin R  h4p pos
         Win Y -> lift $ tellWin Y h4p pos
@@ -93,6 +95,7 @@ runClient hdl p chan = do
         line <- hGetLine hdl
         writeChan chan (p, line)
         loop
+    putStrLn $ "Player " ++ show p ++ " disconnected"
     writeChan chan (p, "disconnect")
 
 getHandle :: Socket -> IO Handle
@@ -118,3 +121,4 @@ tellAll :: (Player -> Handle) -> String -> IO ()
 tellAll h4p msg = do
     catch (hPutStrLn (h4p R) msg) (\(SomeException _) -> return ())
     catch (hPutStrLn (h4p Y) msg) (\(SomeException _) -> return ())
+    putStrLn msg
