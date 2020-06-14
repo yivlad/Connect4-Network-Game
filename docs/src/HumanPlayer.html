@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">{-|
+Module      : HumanPlayer
+Description : This module represents human player in connect four game.
+
+Module enables user to connect to a gameserver from a terminal window and play game by typing moves in. Moves are represented as number of column from 0 to 6 to put player's token in. 
+-}</span><span>
+</span><span id="line-7"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">HumanPlayer</span><span class="hs-special">(</span><span class="annot"><a href="HumanPlayer.html#runClient"><span class="hs-identifier">runClient</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-8"></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Network.Socket</span></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">System.IO</span></span><span>
+</span><span id="line-11"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Exception</span></span><span>
+</span><span id="line-12"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Concurrent</span></span><span>
+</span><span id="line-13"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Monad.Fix</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">fix</span></span><span class="hs-special">)</span><span>
+</span><span id="line-14"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Monad</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">forever</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier">when</span></span><span class="hs-special">)</span><span>
+</span><span id="line-15"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="GameLogics.html"><span class="hs-identifier">GameLogics</span></a></span><span>
+</span><span id="line-16"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.List</span></span><span>
+</span><span id="line-17"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Text.Read</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">readMaybe</span></span><span class="hs-special">)</span><span>
+</span><span id="line-18"></span><span>
+</span><span id="line-19"></span><span class="hs-comment">-- | Main function of the module. Connects to the game server, then starts two threads: one for redirecting standard input to game server, second for displaying data coming from game server on standard output. </span><span>
+</span><span id="line-20"></span><span class="annot"><a href="HumanPlayer.html#runClient"><span class="hs-identifier hs-type">runClient</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-comment">-- ^ address of game server</span><span>
+</span><span id="line-21"></span><span>          </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-comment">-- ^ ort of game server to connect to</span><span>
+</span><span id="line-22"></span><span>          </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-23"></span><span id="runClient"><span class="annot"><span class="annottext">runClient :: String -&gt; String -&gt; IO ()
+</span><a href="HumanPlayer.html#runClient"><span class="hs-identifier hs-var hs-var">runClient</span></a></span></span><span> </span><span id="local-6989586621679058802"><span class="annot"><span class="annottext">host :: String
+</span><a href="#local-6989586621679058802"><span class="hs-identifier hs-var">host</span></a></span></span><span> </span><span id="local-6989586621679058801"><span class="annot"><span class="annottext">port :: String
+</span><a href="#local-6989586621679058801"><span class="hs-identifier hs-var">port</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-24"></span><span>    </span><span id="local-6989586621679058800"><span class="annot"><span class="annottext">[AddrInfo]
+</span><a href="#local-6989586621679058800"><span class="hs-identifier hs-var">addrinfos</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Maybe AddrInfo -&gt; Maybe String -&gt; Maybe String -&gt; IO [AddrInfo]
+</span><span class="hs-identifier hs-var">getAddrInfo</span></span><span> </span><span class="annot"><span class="annottext">Maybe AddrInfo
+forall a. Maybe a
+</span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String -&gt; Maybe String
+forall a. a -&gt; Maybe a
+</span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679058802"><span class="hs-identifier hs-var">host</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String -&gt; Maybe String
+forall a. a -&gt; Maybe a
+</span><span class="hs-identifier hs-var">Just</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679058801"><span class="hs-identifier hs-var">port</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-25"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679058798"><span class="annot"><span class="annottext">serveraddr :: AddrInfo
+</span><a href="#local-6989586621679058798"><span class="hs-identifier hs-var hs-var">serveraddr</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[AddrInfo] -&gt; AddrInfo
+forall a. [a] -&gt; a
+</span><span class="hs-identifier hs-var">head</span></span><span> </span><span class="annot"><span class="annottext">[AddrInfo]
+</span><a href="#local-6989586621679058800"><span class="hs-identifier hs-var">addrinfos</span></a></span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679058796"><span class="annot"><span class="annottext">Socket
+</span><a href="#local-6989586621679058796"><span class="hs-identifier hs-var">sock</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Family -&gt; SocketType -&gt; ProtocolNumber -&gt; IO Socket
+</span><span class="hs-identifier hs-var">socket</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">AddrInfo -&gt; Family
+</span><span class="hs-identifier hs-var hs-var">addrFamily</span></span><span> </span><span class="annot"><span class="annottext">AddrInfo
+</span><a href="#local-6989586621679058798"><span class="hs-identifier hs-var">serveraddr</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">SocketType
+</span><span class="hs-identifier hs-var">Stream</span></span><span> </span><span class="annot"><span class="annottext">ProtocolNumber
+</span><span class="hs-identifier hs-var">defaultProtocol</span></span><span>
+</span><span id="line-27"></span><span>    </span><span class="annot"><span class="annottext">Socket -&gt; SocketOption -&gt; Int -&gt; IO ()
+</span><span class="hs-identifier hs-var">setSocketOption</span></span><span> </span><span class="annot"><span class="annottext">Socket
+</span><a href="#local-6989586621679058796"><span class="hs-identifier hs-var">sock</span></a></span><span> </span><span class="annot"><span class="annottext">SocketOption
+</span><span class="hs-identifier hs-var">KeepAlive</span></span><span> </span><span class="annot"><span class="hs-number">1</span></span><span>
+</span><span id="line-28"></span><span>    </span><span class="annot"><span class="annottext">Socket -&gt; SockAddr -&gt; IO ()
+</span><span class="hs-identifier hs-var">connect</span></span><span> </span><span class="annot"><span class="annottext">Socket
+</span><a href="#local-6989586621679058796"><span class="hs-identifier hs-var">sock</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">AddrInfo -&gt; SockAddr
+</span><span class="hs-identifier hs-var hs-var">addrAddress</span></span><span> </span><span class="annot"><span class="annottext">AddrInfo
+</span><a href="#local-6989586621679058798"><span class="hs-identifier hs-var">serveraddr</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-29"></span><span>    </span><span id="local-6989586621679058787"><span class="annot"><span class="annottext">Handle
+</span><a href="#local-6989586621679058787"><span class="hs-identifier hs-var">hdl</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Socket -&gt; IOMode -&gt; IO Handle
+</span><span class="hs-identifier hs-var">socketToHandle</span></span><span> </span><span class="annot"><span class="annottext">Socket
+</span><a href="#local-6989586621679058796"><span class="hs-identifier hs-var">sock</span></a></span><span> </span><span class="annot"><span class="annottext">IOMode
+</span><span class="hs-identifier hs-var">ReadWriteMode</span></span><span>
+</span><span id="line-30"></span><span>    </span><span class="annot"><span class="annottext">Handle -&gt; BufferMode -&gt; IO ()
+</span><span class="hs-identifier hs-var">hSetBuffering</span></span><span> </span><span class="annot"><span class="annottext">Handle
+</span><a href="#local-6989586621679058787"><span class="hs-identifier hs-var">hdl</span></a></span><span> </span><span class="annot"><span class="annottext">BufferMode
+</span><span class="hs-identifier hs-var">NoBuffering</span></span><span>
+</span><span id="line-31"></span><span>    </span><span id="local-6989586621679058782"><span class="annot"><span class="annottext">ThreadId
+</span><a href="#local-6989586621679058782"><span class="hs-identifier hs-var">writertid</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO ThreadId
+</span><span class="hs-identifier hs-var">forkIO</span></span><span> </span><span class="annot"><span class="annottext">(IO () -&gt; IO ThreadId) -&gt; IO () -&gt; IO ThreadId
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">(IO () -&gt; IO ()) -&gt; IO ()
+forall a. (a -&gt; a) -&gt; a
+</span><span class="hs-identifier hs-var">fix</span></span><span> </span><span class="annot"><span class="annottext">((IO () -&gt; IO ()) -&gt; IO ()) -&gt; (IO () -&gt; IO ()) -&gt; IO ()
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679058780"><span class="annot"><span class="annottext">loop :: IO ()
+</span><a href="#local-6989586621679058780"><span class="hs-identifier hs-var">loop</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-32"></span><span>        </span><span id="local-6989586621679058779"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679058779"><span class="hs-identifier hs-var">line</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO String
+</span><span class="hs-identifier hs-var">getLine</span></span><span>
+</span><span id="line-33"></span><span>        </span><span class="annot"><span class="annottext">Handle -&gt; String -&gt; IO ()
+</span><span class="hs-identifier hs-var">hPutStrLn</span></span><span> </span><span class="annot"><span class="annottext">Handle
+</span><a href="#local-6989586621679058787"><span class="hs-identifier hs-var">hdl</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679058779"><span class="hs-identifier hs-var">line</span></a></span><span>
+</span><span id="line-34"></span><span>        </span><span class="annot"><span class="annottext">IO ()
+</span><a href="#local-6989586621679058780"><span class="hs-identifier hs-var">loop</span></a></span><span>
+</span><span id="line-35"></span><span>    </span><span class="annot"><span class="annottext">Handle -&gt; IO ()
+</span><a href="HumanPlayer.html#clientLoop"><span class="hs-identifier hs-var">clientLoop</span></a></span><span> </span><span class="annot"><span class="annottext">Handle
+</span><a href="#local-6989586621679058787"><span class="hs-identifier hs-var">hdl</span></a></span><span>
+</span><span id="line-36"></span><span>    </span><span class="annot"><span class="annottext">ThreadId -&gt; IO ()
+</span><span class="hs-identifier hs-var">killThread</span></span><span> </span><span class="annot"><span class="annottext">ThreadId
+</span><a href="#local-6989586621679058782"><span class="hs-identifier hs-var">writertid</span></a></span><span>
+</span><span id="line-37"></span><span>    </span><span class="annot"><span class="annottext">Handle -&gt; IO ()
+</span><span class="hs-identifier hs-var">hClose</span></span><span> </span><span class="annot"><span class="annottext">Handle
+</span><a href="#local-6989586621679058787"><span class="hs-identifier hs-var">hdl</span></a></span><span>
+</span><span id="line-38"></span><span>    </span><span class="annot"><span class="annottext">Socket -&gt; IO ()
+</span><span class="hs-identifier hs-var">close</span></span><span> </span><span class="annot"><span class="annottext">Socket
+</span><a href="#local-6989586621679058796"><span class="hs-identifier hs-var">sock</span></a></span><span>
+</span><span id="line-39"></span><span>
+</span><span id="line-40"></span><span class="annot"><a href="HumanPlayer.html#parseInput"><span class="hs-identifier hs-type">parseInput</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span>
+</span><span id="line-41"></span><span id="parseInput"><span class="annot"><span class="annottext">parseInput :: String -&gt; IO Bool
+</span><a href="HumanPlayer.html#parseInput"><span class="hs-identifier hs-var hs-var">parseInput</span></a></span></span><span> </span><span class="hs-string">&quot;R&quot;</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; IO ()
+</span><span class="hs-identifier hs-var">putStrLn</span></span><span> </span><span class="annot"><span class="hs-string">&quot;You are playing Red!&quot;</span></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO Bool -&gt; IO Bool
+forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
+</span><span class="hs-operator hs-var">&gt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">Bool -&gt; IO Bool
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span class="hs-identifier hs-var">True</span></span><span>
+</span><span id="line-42"></span><span class="annot"><a href="HumanPlayer.html#parseInput"><span class="hs-identifier hs-var">parseInput</span></a></span><span> </span><span class="hs-string">&quot;Y&quot;</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; IO ()
+</span><span class="hs-identifier hs-var">putStrLn</span></span><span> </span><span class="annot"><span class="hs-string">&quot;You are playing Yellow!&quot;</span></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO Bool -&gt; IO Bool
+forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
+</span><span class="hs-operator hs-var">&gt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">Bool -&gt; IO Bool
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span class="hs-identifier hs-var">True</span></span><span>
+</span><span id="line-43"></span><span class="annot"><a href="HumanPlayer.html#parseInput"><span class="hs-identifier hs-var">parseInput</span></a></span><span> </span><span class="hs-string">&quot;Exit&quot;</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool -&gt; IO Bool
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span class="hs-identifier hs-var">False</span></span><span>
+</span><span id="line-44"></span><span class="annot"><a href="HumanPlayer.html#parseInput"><span class="hs-identifier hs-var">parseInput</span></a></span><span> </span><span id="local-6989586621679058770"><span class="annot"><span class="annottext">s :: String
+</span><a href="#local-6989586621679058770"><span class="hs-identifier hs-var">s</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String -&gt; Maybe Board
+forall a. Read a =&gt; String -&gt; Maybe a
+</span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679058770"><span class="hs-identifier hs-var">s</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="GameLogics.html#Board"><span class="hs-identifier hs-type">Board</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-45"></span><span>                </span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679058769"><span class="annot"><span class="annottext">b :: Board
+</span><a href="#local-6989586621679058769"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-46"></span><span>                    </span><span class="annot"><span class="annottext">String -&gt; IO ()
+</span><span class="hs-identifier hs-var">putStrLn</span></span><span> </span><span class="annot"><span class="hs-string">&quot;Your move!&quot;</span></span><span>
+</span><span id="line-47"></span><span>                    </span><span class="annot"><span class="annottext">String -&gt; IO ()
+</span><span class="hs-identifier hs-var">putStrLn</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; IO ()) -&gt; String -&gt; IO ()
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Board -&gt; String
+</span><a href="GameLogics.html#boardToString"><span class="hs-identifier hs-var">boardToString</span></a></span><span> </span><span class="annot"><span class="annottext">Board
+</span><a href="#local-6989586621679058769"><span class="hs-identifier hs-var">b</span></a></span><span>
+</span><span id="line-48"></span><span>                    </span><span class="annot"><span class="annottext">Bool -&gt; IO Bool
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span class="hs-identifier hs-var">True</span></span><span>
+</span><span id="line-49"></span><span>                </span><span class="annot"><span class="hs-identifier hs-type">Nothing</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">String -&gt; IO ()
+</span><span class="hs-identifier hs-var">putStrLn</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679058770"><span class="hs-identifier hs-var">s</span></a></span><span> </span><span class="annot"><span class="annottext">IO () -&gt; IO Bool -&gt; IO Bool
+forall (m :: * -&gt; *) a b. Monad m =&gt; m a -&gt; m b -&gt; m b
+</span><span class="hs-operator hs-var">&gt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">Bool -&gt; IO Bool
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span class="hs-identifier hs-var">True</span></span><span>
+</span><span id="line-50"></span><span>
+</span><span id="line-51"></span><span class="annot"><a href="HumanPlayer.html#clientLoop"><span class="hs-identifier hs-type">clientLoop</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Handle</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
+</span><span id="line-52"></span><span id="clientLoop"><span class="annot"><span class="annottext">clientLoop :: Handle -&gt; IO ()
+</span><a href="HumanPlayer.html#clientLoop"><span class="hs-identifier hs-var hs-var">clientLoop</span></a></span></span><span> </span><span id="local-6989586621679058767"><span class="annot"><span class="annottext">hdl :: Handle
+</span><a href="#local-6989586621679058767"><span class="hs-identifier hs-var">hdl</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-53"></span><span>    </span><span id="local-6989586621679058766"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679058766"><span class="hs-identifier hs-var">line</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Handle -&gt; IO String
+</span><span class="hs-identifier hs-var">hGetLine</span></span><span> </span><span class="annot"><span class="annottext">Handle
+</span><a href="#local-6989586621679058767"><span class="hs-identifier hs-var">hdl</span></a></span><span>
+</span><span id="line-54"></span><span>    </span><span id="local-6989586621679058764"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679058764"><span class="hs-identifier hs-var">flag</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">String -&gt; IO Bool
+</span><a href="HumanPlayer.html#parseInput"><span class="hs-identifier hs-var">parseInput</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679058766"><span class="hs-identifier hs-var">line</span></a></span><span>
+</span><span id="line-55"></span><span>    </span><span class="annot"><span class="annottext">Bool -&gt; IO () -&gt; IO ()
+forall (f :: * -&gt; *). Applicative f =&gt; Bool -&gt; f () -&gt; f ()
+</span><span class="hs-identifier hs-var">when</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679058764"><span class="hs-identifier hs-var">flag</span></a></span><span> </span><span class="annot"><span class="annottext">(IO () -&gt; IO ()) -&gt; IO () -&gt; IO ()
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Handle -&gt; IO ()
+</span><a href="HumanPlayer.html#clientLoop"><span class="hs-identifier hs-var">clientLoop</span></a></span><span> </span><span class="annot"><span class="annottext">Handle
+</span><a href="#local-6989586621679058767"><span class="hs-identifier hs-var">hdl</span></a></span></pre></body></html>

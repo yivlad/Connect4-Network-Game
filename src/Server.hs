@@ -1,3 +1,9 @@
+{-|
+Module      : Server
+Description : This module represents a game server for connect four network game.
+
+Module provides an only function that starts gameserver. Server makes two connections with players, and then asynchronously listens on both. If any of the players sends data to server, it is proccessed in a main thread and response is returned to the sender via same conncetion.
+-}
 module Server(
     runServer
 ) where
@@ -17,7 +23,9 @@ import Data.Maybe
 type Msg = (Player, String)
 type GameState = StateT Position IO
 
-runServer :: String -> IO()
+-- | Main function of the module. Listens on given address for two players (first connected is given red team to play for, second - yellow) and then starts game loop.
+runServer :: String -- ^ port to listen on for players
+          -> IO()
 runServer port = do
     sock <- socket AF_INET Stream 0
     setSocketOption sock ReuseAddr 1

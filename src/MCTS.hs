@@ -1,4 +1,10 @@
-module MCTS where
+{-|
+Module      : MCTS
+Description : This module defines a way to find a best move in a current postion.
+
+Module represents Haskell implementation of Monte Carlo Tree Search. Implemented MCTS has classic configuration: after adding node to a tree only one rollout is executed, selection is done by chosing any non-visited node, or, if all are visited, by using UCB formula.
+-}
+module MCTS(doMCTS) where
 
 import System.Random
 import Data.List
@@ -92,7 +98,11 @@ getBestMove m = fromMaybe (-1) t
         cb = board $ pos m
         t = elemIndex False $ zipWith (==) bb cb
 
-doMCTS :: StdGen -> Position -> Int -> IO(Int, StdGen)
+-- | Main function of the module - evaluates position using Monte Carlo Tree Serach for a given number of milliseconds.
+doMCTS :: StdGen -- ^ StdGen used for randomness
+       -> Position -- ^ Game position to evaluate
+       -> Int -- ^ Number of milliseconds to evaluate for
+       -> IO(Int, StdGen) -- ^ (number of column that represents the best found way to put token, StdGen returned from all random actions)
 doMCTS gen p ms = do
     currentTimestamp <- getCurrentTime
     let maxTimeStamp = addUTCTime (fromIntegral ms / 1000) currentTimestamp

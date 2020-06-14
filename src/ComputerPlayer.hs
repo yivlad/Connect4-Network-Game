@@ -1,4 +1,10 @@
-module ComputerPlayer where
+{-|
+Module      : ComputerPlayer
+Description : This module represents computer player in connect four game.
+
+Module provides an interface for using MCTS module for playing game via network. 
+-}
+module ComputerPlayer(runAIPlayer) where
 
 import Network.Socket
 import System.IO
@@ -10,7 +16,10 @@ import MCTS
 
 data Command = Ignore | Exit | FindMove Position | Unknown
 
-runAIPlayer :: String -> String -> IO ()
+-- | Main function of the module. Connects to the game server, then starts game loop with invocation of MCTS AI.
+runAIPlayer :: String -- ^ address of game server
+            -> String -- ^ port of game server to connect to
+            -> IO ()
 runAIPlayer host port = do
     addrinfos <- getAddrInfo Nothing (Just host) (Just port)
     let serveraddr = head addrinfos

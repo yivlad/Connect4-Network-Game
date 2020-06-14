@@ -1,4 +1,10 @@
-module HumanPlayer where
+{-|
+Module      : HumanPlayer
+Description : This module represents human player in connect four game.
+
+Module enables user to connect to a gameserver from a terminal window and play game by typing moves in. Moves are represented as number of column from 0 to 6 to put player's token in. 
+-}
+module HumanPlayer(runClient) where
 
 import Network.Socket
 import System.IO
@@ -10,7 +16,10 @@ import GameLogics
 import Data.List
 import Text.Read (readMaybe)
 
-runClient :: String -> String -> IO()
+-- | Main function of the module. Connects to the game server, then starts two threads: one for redirecting standard input to game server, second for displaying data coming from game server on standard output. 
+runClient :: String -- ^ address of game server
+          -> String -- ^ ort of game server to connect to
+          -> IO()
 runClient host port = do
     addrinfos <- getAddrInfo Nothing (Just host) (Just port)
     let serveraddr = head addrinfos

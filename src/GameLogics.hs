@@ -1,3 +1,9 @@
+{-|
+Module      : GameLogics
+Description : This module provides a basic set of rules to define connect four game.
+
+Module defines all types and functions needed to store and manipulate gamestate. These functions are used in both Server and MCTS modules to define possible continuation of the current game or state in which the game has ended. 
+-}
 module GameLogics(
     Player(..),
     Board,
@@ -12,9 +18,16 @@ module GameLogics(
 
 import Data.List
 
+-- | Players : R - Red, Y - Yellow. Red one starts the game.
 data Player = R | Y deriving (Show, Eq, Read)
+
+-- | Current state of the game - every column is described as stack of players' tokens. 
 type Board = [[Player]]
+
+-- | Result of the game.
 data Result = Win Player | Draw | InProgress deriving (Show, Eq)
+
+-- | Position is a wrapper for board type, so it is possible to get player whose current turn it is without counting tokens on board.
 data Position = Position {
     turn :: Player,
     board :: Board
@@ -23,13 +36,18 @@ data Position = Position {
 instance Show Position where
     show pos = boardToString $ board pos
 
+-- | User-friendly view of board.
 boardToString :: Board -> String
 boardToString b = intercalate "\n" $ transpose $ map (\c -> replicate (6 - length c) '#' ++ concatMap show c) b
 
+-- | Creates new game with zero tokens and Red's turn.
 newGame :: Position
 newGame = Position R $ replicate 7 []
 
-makeMove :: Int -> Position -> Position
+-- | Adds token to a specified column and changes turn.
+makeMove :: Int -- ^ number of column to put token in
+         -> Position -- ^ start postion
+         -> Position -- ^ position after move
 makeMove col (Position turn board) = Position (reverseTurn turn) (addDisc board)
     where
         reverseTurn :: Player -> Player
@@ -38,6 +56,7 @@ makeMove col (Position turn board) = Position (reverseTurn turn) (addDisc board)
         addDisc :: Board -> Board
         addDisc board = zipWith (\ column index -> if index == col then turn:column else column) board [0..]
 
+-- | Takes board and returns all numbers of columns where it is possible to put token.
 legalMoves :: Board -> [Int]
 legalMoves board = map snd $ filter ( (< 6) . length . fst) $ zip board [0..]
 
@@ -72,6 +91,7 @@ checkTile p b x y
     where
         l = length (b !! x) - 1
 
+-- | Takes position and returns whether game has ended and if so, which result it had.
 evaluatePosition :: Position -> Result
 evaluatePosition (Position p b)
     | checkBoard R b = Win R
