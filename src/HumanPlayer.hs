@@ -40,7 +40,7 @@ runClient host port = do
 parseInput :: String -> IO Bool
 parseInput "R" = putStrLn "You are playing Red!" >> return True
 parseInput "Y" = putStrLn "You are playing Yellow!" >> return True
-parseInput "Exit" = return False
+parseInput "Exit" = putStrLn "Leaving game..." >> return False
 parseInput s = case (readMaybe s :: Maybe Board) of
                 Just b -> do
                     putStrLn "Your move!"

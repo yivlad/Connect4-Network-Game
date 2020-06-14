@@ -41,15 +41,17 @@ runServer port = do
     (sockY, _ ) <- accept sock
     hdlY <- getHandle sockY
     tidY <- forkIO (runClient hdlY Y chan)
-    execStateT (serverLoop chan $ handleForPlayer [(R, hdlR), (Y, hdlY)]) newGame
-    hPutStrLn hdlR "Exit"
-    hPutStrLn hdlY "Exit"
-    killThread tidR
-    killThread tidY
-    hClose hdlR
-    hClose hdlY
-    close sockR
-    close sockY
+    let playersdict = handleForPlayer [(R, hdlR), (Y, hdlY)]
+    execStateT (serverLoop chan playersdict) newGame
+    tellAll playersdict "Exit"
+    handle (\(SomeException _) -> return ()) $ do
+                                                killThread tidR
+                                                hClose hdlR
+                                                close sockR
+    handle (\(SomeException _) -> return ()) $ do
+                                                killThread tidY
+                                                hClose hdlY
+                                                close sockY
 
 serverLoop :: Chan Msg -> (Player -> Handle) -> GameState ()
 serverLoop chan h4p = do
@@ -61,24 +63,28 @@ serverLoop chan h4p = do
         InProgress -> do
             let hdl = h4p $ turn pos
             lift $ hPrint hdl $ board pos
-            gameIteration chan h4p
-            serverLoop chan h4p
+            f <- gameIteration chan h4p
+            when f $ serverLoop chan h4p
 
-gameIteration :: Chan Msg -> (Player -> Handle) -> GameState ()
+gameIteration :: Chan Msg -> (Player -> Handle) -> GameState Bool
 gameIteration chan h4p = do
     pos <- get
     (p, msg) <- lift $ readChan chan
     let move = fromMaybe (-1) (readMaybe msg)
         hdl = h4p p
-    if p /= turn pos
+    if msg == "disconnect"
         then
-            lift (hPutStrLn hdl "Not your turn!") >> gameIteration chan h4p
+            return False 
         else
-            if move `notElem` legalMoves (board pos)
+            if p /= turn pos
                 then
-                    lift (hPutStrLn hdl "Not legal move!") >> gameIteration chan h4p
+                    lift (hPutStrLn hdl "Not your turn!") >> gameIteration chan h4p
                 else
-                    modify' (makeMove move)
+                    if move `notElem` legalMoves (board pos)
+                        then
+                            lift (hPutStrLn hdl "Not legal move!") >> gameIteration chan h4p
+                        else
+                            modify' (makeMove move) >> return True 
 
 runClient :: Handle -> Player -> Chan Msg -> IO()
 runClient hdl p chan = do
@@ -87,6 +93,7 @@ runClient hdl p chan = do
         line <- hGetLine hdl
         writeChan chan (p, line)
         loop
+    writeChan chan (p, "disconnect")
 
 getHandle :: Socket -> IO Handle
 getHandle sock = do
@@ -109,5 +116,5 @@ tellDraw h4p pos = do
 
 tellAll :: (Player -> Handle) -> String -> IO ()
 tellAll h4p msg = do
-    hPutStrLn (h4p R) msg
-    hPutStrLn (h4p Y) msg
+    catch (hPutStrLn (h4p R) msg) (\(SomeException _) -> return ())
+    catch (hPutStrLn (h4p Y) msg) (\(SomeException _) -> return ())
