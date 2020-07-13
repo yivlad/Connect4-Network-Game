@@ -8,7 +8,7 @@ Project implementing [Connect Four game](https://en.wikipedia.org/wiki/Connect_F
 
 ## Prerequisites
 
-Project uses [stack](haskellstack.org).
+Project uses [stack](https://haskellstack.org).
 
 ## Usage
 
